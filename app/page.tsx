@@ -3,6 +3,9 @@ import { FaixaNumeros } from "@/components/blocos/FaixaNumeros";
 import { VoceJaPassou } from "@/components/blocos/VoceJaPassou";
 import { OQueMudaAqui } from "@/components/blocos/OQueMudaAqui";
 import { GaleriaReal } from "@/components/galeria/GaleriaReal";
+import { ComoFunciona } from "@/components/blocos/ComoFunciona";
+import { ObjecoesFrequentes } from "@/components/blocos/ObjecoesFrequentes";
+import { ComoFuncionaOValor } from "@/components/blocos/ComoFuncionaOValor";
 import { TracoAssinatura } from "@/components/marca/TracoAssinatura";
 
 export default function Home() {
@@ -25,6 +28,17 @@ export default function Home() {
 
         <TracoAssinatura modo="divisor" className="mx-auto h-6 w-40" />
         <GaleriaReal />
+
+        <TracoAssinatura modo="divisor" className="mx-auto h-6 w-40" />
+        <ComoFunciona />
+
+        {/* Bloco 7, depoimentos em vídeo: sem vídeo real ainda, ver
+            TASKS.md > Bloqueios abertos. */}
+
+        <ObjecoesFrequentes />
+
+        <TracoAssinatura modo="divisor" className="mx-auto h-6 w-40" />
+        <ComoFuncionaOValor />
       </main>
     </>
   );

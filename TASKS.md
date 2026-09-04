@@ -104,14 +104,14 @@ Grade de fotos, lightbox ao toque, navegável por teclado e por setas. Sem físi
 Como funciona (6 etapas), depoimentos em vídeo, bloco de objeções "E se..." e bloco "como funciona o valor" (`CLAUDE.md` §6).
 
 **Pronto quando:**
-- [ ] Texto sobre ABA sem promessa terapêutica
-- [ ] Zero linguagem capacitista
-- [ ] Vídeos com legenda e transcrição
-- [ ] Nenhuma tabela de preço, nenhuma faixa, nenhum "a partir de"
-- [ ] Bloco de valor explica o critério e diz que o valor é combinado antes da visita
-- [ ] Objeções em `<details>`/acordeão acessível: navegável por teclado, `aria-expanded` correto, conteúdo presente no DOM para indexação
-- [ ] Respostas operacionais e concretas, nunca tranquilização genérica
-- [ ] Nenhum texto do bloco tratando o público como exclusivamente infantil
+- [x] Texto sobre ABA sem promessa terapêutica
+- [x] Zero linguagem capacitista
+- [ ] Vídeos com legenda e transcrição — **bloco 7 (depoimentos) inteiro de fora**, nenhum vídeo real chegou ainda (mesmo bloqueio do T6)
+- [x] Nenhuma tabela de preço, nenhuma faixa, nenhum "a partir de"
+- [x] Bloco de valor explica o critério e diz que o valor é combinado antes da visita
+- [x] Objeções em `<details>`/`<summary>` nativos: teclado e estado expandido/recolhido vêm do navegador, conteúdo sempre no DOM. Mecanismo pronto e testado na estrutura; **nenhuma objeção renderiza hoje** porque nenhuma resposta foi confirmada (`objecoesRespondidas` filtra tudo, ver lib/conteudo/objecoes.ts)
+- [ ] Respostas operacionais e concretas, nunca tranquilização genérica — não verificável ainda, não existe nenhuma resposta escrita
+- [x] Nenhum texto do bloco tratando o público como exclusivamente infantil
 
 ---
 
