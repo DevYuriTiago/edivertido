@@ -145,12 +145,12 @@ Localização, horários, CTA final.
 Metadata API. JSON-LD `HairSalon` + `LocalBusiness`. `sitemap.ts`, `robots.ts`. OG 1200×630. Página de privacidade.
 
 **Pronto quando:**
-- [ ] JSON-LD válido no Rich Results Test
-- [ ] `lang="pt-BR"`, title e description com a intenção de busca
-- [ ] `grep -rn "https://" app lib components` não retorna o domínio
-- [ ] Um canônico respondendo 200, o outro com 308
-- [ ] Preview com `X-Robots-Tag: noindex`, verificado no header
-- [ ] Política cobre dado sensível de saúde coletado no formulário
+- [~] JSON-LD válido no Rich Results Test — schema (HairSalon + LocalBusiness) implementado e testado manualmente (JSON bem formado, todos os campos batendo com `lib/conteudo/`); o teste real do Rich Results Test do Google exige uma URL pública, então só roda depois do deploy
+- [x] `lang="pt-BR"`, title e description com a intenção de busca (título adaptado: troquei o "—" do texto literal do CLAUDE.md por "|", por causa da regra de nunca usar travessão em copy do site — ver comentário em `app/layout.tsx`)
+- [x] `grep -rn "https://" app lib components` não retorna o domínio (testado; só aparecem wa.me, schema.org, instagram.com e google.com/maps, todos serviços externos legítimos)
+- [ ] Um canônico respondendo 200, o outro com 308 — **depende do domínio real e do deploy**; não dá para testar em localhost (não existe distinção apex/www sem domínio). `alternates.canonical` já está configurado no código; falta a config de redirect na Vercel quando o domínio existir
+- [~] Preview com `X-Robots-Tag: noindex`, verificado no header — implementado em `next.config.ts` (`X-Robots-Tag: noindex` quando `VERCEL_ENV=preview`); não verificável localmente porque essa variável só existe em deploys reais da Vercel
+- [x] Política cobre dado sensível de saúde coletado no formulário (`/privacidade`, criada no T9 por dependência, seção "Que dados o formulário pede" cobre isso explicitamente)
 
 ---
 
@@ -182,6 +182,6 @@ Não invente nenhum destes.
 - [~] Nota e volume real de avaliações no Google — **5,0 ★, 84 avaliações**, confirmado via print do Google Business Profile. Bloco 2 continua fora do ar porque `CLAUDE.md` §6 exige nota+avaliações **e** tempo de operação **e** número de atendimentos juntos ("se qualquer um não puder ser comprovado, o bloco inteiro sai") — faltam os outros dois.
 - [ ] Tempo de operação do salão e número de atendimentos sustentável — bloqueia o bloco 2 mesmo com a nota do Google confirmada
 - [ ] Respostas operacionais para as objeções do bloco 8 — bloqueia parte do T8
-- [ ] Confirmar handle correto do Instagram — `CLAUDE.md` §1 documenta `@edivertidooficial` (2.2k), mas o print recebido é de `@edbarbeiroinclusivo` (2.9k, conta do barbeiro). Pode ser conta pessoal separada da conta oficial da marca — checar antes do T11 (JSON-LD `sameAs`).
+- [ ] Confirmar handle correto do Instagram — `CLAUDE.md` §1 documenta `@edivertidooficial` (2.2k), mas o print recebido é de `@edbarbeiroinclusivo` (2.9k, conta do barbeiro). Pode ser conta pessoal separada da conta oficial da marca. **`lib/schema.ts` já usa `@edivertidooficial` no `sameAs` do JSON-LD** (o valor documentado, não o do print) — confirmar antes do deploy, porque `sameAs` errado no schema aponta pra conta errada publicamente.
 - [ ] Domínio do site (`NEXT_PUBLIC_SITE_URL`) — ainda bloqueado, necessário para T11
 - [ ] Vídeo real do salão/atendimento — bloqueia o critério de vídeo do T6 (e possivelmente os depoimentos em vídeo do T8). Só existem fotos (`public/marca/01.jpeg`-`05.jpeg`); nenhum arquivo de vídeo foi recebido

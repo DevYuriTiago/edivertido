@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Política de Privacidade | Edivertido Salão Inclusivo",
   description:
     "Como o Edivertido Salão Inclusivo trata os dados enviados pelo formulário do site.",
+  alternates: {
+    canonical: "/privacidade",
+  },
 };
 
 export default function Privacidade() {
