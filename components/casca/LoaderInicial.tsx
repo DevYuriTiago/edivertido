@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TracoAssinatura } from "@/components/marca/TracoAssinatura";
 import { useSensorial } from "@/lib/sensorial";
 
@@ -14,9 +14,20 @@ export function LoaderInicial() {
   const [estado, setEstado] = useState<Estado>("carregando");
   const { movimento } = useSensorial();
 
-  if (estado === "escondido") return null;
-
   const duracaoSaidaMs = Math.max(movimento, 0.15) * 400;
+
+  // onTransitionEnd é o caminho normal, mas não é confiável sozinho
+  // (não dispara em alguns navegadores/abas em segundo plano quando a
+  // aba não está em foco durante a transição) — achado testando este
+  // bloco. Sem esse reforço, o overlay ficava preso em "saindo",
+  // aria-hidden mas ainda bloqueando clique na página inteira.
+  useEffect(() => {
+    if (estado !== "saindo") return;
+    const tempo = setTimeout(() => setEstado("escondido"), duracaoSaidaMs + 100);
+    return () => clearTimeout(tempo);
+  }, [estado, duracaoSaidaMs]);
+
+  if (estado === "escondido") return null;
 
   return (
     <div
@@ -24,6 +35,7 @@ export function LoaderInicial() {
       className="fixed inset-0 z-50 flex items-center justify-center bg-ed-surface transition-opacity"
       style={{
         opacity: estado === "saindo" ? 0 : 1,
+        pointerEvents: estado === "saindo" ? "none" : "auto",
         transitionDuration: `${duracaoSaidaMs}ms`,
       }}
       onTransitionEnd={() => {

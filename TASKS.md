@@ -120,13 +120,15 @@ Como funciona (6 etapas), depoimentos em vídeo, bloco de objeções "E se..." e
 Quatro etapas, progresso visível, tudo opcional exceto nome e contato. Monta mensagem estruturada e abre `wa.me`.
 
 **Pronto quando:**
-- [ ] Labels visíveis sempre, nunca só placeholder
-- [ ] Erros descritivos em texto ao lado do campo
-- [ ] `aria-live` anuncia mudança de etapa
-- [ ] 100% por teclado, sem timeout
-- [ ] Opções incluem "prefiro não dizer" e "sem diagnóstico"
-- [ ] Mensagem final legível por humano, não despejo de JSON
-- [ ] Aviso de LGPD com link para `/privacidade` antes do envio
+- [x] Labels visíveis sempre, nunca só placeholder
+- [x] Erros descritivos em texto ao lado do campo (testado: os 3 erros da etapa 4 aparecem cada um junto do seu campo)
+- [x] `aria-live` anuncia mudança de etapa (testado: "Etapa X de 4: [nome]" atualiza a cada troca)
+- [x] 100% por teclado, sem timeout (campos nativos, sem lógica de expiração)
+- [x] Opções incluem "prefiro não dizer" e "sem diagnóstico"
+- [x] Mensagem final legível por humano, não despejo de JSON (testado: só as linhas preenchidas aparecem na mensagem do wa.me)
+- [x] Aviso de LGPD com link para `/privacidade` antes do envio (página mínima criada agora, ver nota abaixo; completa no T11)
+
+**Nota:** `/privacidade` teve que nascer agora, fora de ordem, porque o T9 não tem como cumprir seu próprio critério de LGPD sem ela existir. Versão mínima e honesta (arquitetura real: sem backend, sem banco; CNPJ/razão social marcados como pendentes, não inventados). T11 completa com JSON-LD, canônico e os dados legais quando confirmados.
 
 ---
 
