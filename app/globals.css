@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --ed-navy: #131351;
+  --ed-green: #77b900;
+  --ed-orange: #fca700;
+  --ed-white: #ffffff;
+
+  --ed-surface: #fafafc;
+  --ed-surface-2: #f0f0f5;
+  --ed-ink: #131351;
+  --ed-ink-soft: #4a4b72;
+  --ed-line: #dcdce8;
+}
+
+@theme inline {
+  --color-ed-navy: var(--ed-navy);
+  --color-ed-green: var(--ed-green);
+  --color-ed-orange: var(--ed-orange);
+  --color-ed-white: var(--ed-white);
+
+  --color-ed-surface: var(--ed-surface);
+  --color-ed-surface-2: var(--ed-surface-2);
+  --color-ed-ink: var(--ed-ink);
+  --color-ed-ink-soft: var(--ed-ink-soft);
+  --color-ed-line: var(--ed-line);
+
+  --font-display: var(--font-archivo);
+  --font-body: var(--font-atkinson);
+}
+
+body {
+  background: var(--ed-surface);
+  color: var(--ed-ink);
+}
+
+/* Escala tipográfica — CLAUDE.md §8, mobile por padrão, desktop a partir de 768px */
+@layer base {
+  h1,
+  .text-h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 2.125rem; /* 34px */
+    line-height: 1.1;
+  }
+
+  h2,
+  .text-h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.625rem; /* 26px */
+    line-height: 1.2;
+  }
+
+  h3,
+  .text-h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.3;
+  }
+
+  p,
+  .text-body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.65;
+  }
+
+  .text-sm {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.6;
+  }
+
+  .text-eyebrow {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (min-width: 768px) {
+    h1,
+    .text-h1 {
+      font-size: 3.5rem; /* 56px */
+    }
+
+    h2,
+    .text-h2 {
+      font-size: 2.375rem; /* 38px */
+    }
+
+    h3,
+    .text-h3 {
+      font-size: 1.5rem; /* 24px */
+    }
+
+    p,
+    .text-body {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+}
