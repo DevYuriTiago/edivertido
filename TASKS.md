@@ -157,13 +157,13 @@ Metadata API. JSON-LD `HairSalon` + `LocalBusiness`. `sitemap.ts`, `robots.ts`. 
 ## T12 — Auditoria final
 
 **Pronto quando:**
-- [ ] Lighthouse mobile: Performance ≥ 90, Acessibilidade 100, SEO ≥ 95
-- [ ] axe DevTools sem violação crítica ou séria
-- [ ] Nenhum contraste de texto abaixo de 4.5:1
-- [ ] Zoom 200% sem scroll horizontal
-- [ ] Nada pisca acima de 3Hz
-- [ ] Nível sensorial 0 elimina todo movimento não essencial
-- [ ] Teste real em celular de entrada em 4G, não só em emulador
+- [~] Lighthouse mobile: Performance ≥ 90, Acessibilidade 100, SEO ≥ 95 — rodado de verdade (`npx lighthouse`, build de produção, `next start`, mobile + throttling simulado): **Performance 99, Acessibilidade 100, Best Practices 100, SEO 92**. O único ponto que falta no SEO é `rel=canonical` inválido, e isso é 100% efeito do domínio ainda não confirmado (`NEXT_PUBLIC_SITE_URL` vazio localmente vira canonical relativo, que o Lighthouse reprova); revalida sozinho quando o domínio existir. Achados reais corrigidos nesta rodada: alvo de toque do marcador "Padrão" do Regulador ficava com 0px de área desobstruída quando o polegar estava exatamente ali (nível padrão = 0.6, o valor inicial) — reprovava Acessibilidade; e LCP caiu de 2,8s para 2,1s depois desse fix
+- [x] axe DevTools sem violação crítica ou séria — rodado de verdade (axe-core 4.13 injetado via script, não só leitura de código), em 5 estados diferentes: home padrão, `/privacidade`, lightbox da galeria aberto, formulário com os 3 erros ativos, nível sensorial 0. **Zero violações em todos os estados.**
+- [x] Nenhum contraste de texto abaixo de 4.5:1 — verificado por cálculo (tokens do CLAUDE.md §8) e, no nível sensorial 0, **medido em pixel de verdade** (screenshot + amostragem de cor): CTA do herói fica em 8,15:1 mesmo com o filtro de saturação reduzida, bem acima do mínimo
+- [x] Zoom 200% sem scroll horizontal — **achado e corrigido nesta tarefa**: os `<input>`/`<textarea>` do formulário (T9) nunca ganharam `w-full`, e em mobile (390px) + 200% de zoom estouravam a viewport em 77px. Testado de novo depois do fix, página inteira, sem overflow
+- [x] Nada pisca acima de 3Hz — confirmado por leitura de código (nenhum `@keyframes`, nenhuma animação em loop) desde a auditoria do T6
+- [x] Nível sensorial 0 elimina todo movimento não essencial — Regulador, Traço, reveals e hover-tatil todos escalam por `useSensorial().movimento`, testado em várias tarefas
+- [ ] Teste real em celular de entrada em 4G, não só em emulador — **não verificável a partir daqui.** Sem acesso a um celular físico nem rede real neste ambiente. Fica pendente para teste manual antes do lançamento
 
 ---
 

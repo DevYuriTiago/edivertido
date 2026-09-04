@@ -41,7 +41,7 @@ export function Etapa4Contato({
           onChange={(evento) => aoMudarTexto("nomeContato", evento.target.value)}
           aria-invalid={erros.nomeContato ? true : undefined}
           aria-describedby={erros.nomeContato ? "erro-nome-contato" : undefined}
-          className="min-h-12 rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
+          className="min-h-12 w-full rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
         />
         {erros.nomeContato && (
           <p id="erro-nome-contato" role="alert" className="text-sm font-bold">
@@ -65,7 +65,7 @@ export function Etapa4Contato({
           aria-describedby={
             erros.whatsappContato ? "erro-whatsapp-contato" : undefined
           }
-          className="min-h-12 rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
+          className="min-h-12 w-full rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
         />
         {erros.whatsappContato && (
           <p

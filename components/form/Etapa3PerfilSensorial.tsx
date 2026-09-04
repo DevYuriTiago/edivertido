@@ -57,7 +57,7 @@ export function Etapa3PerfilSensorial({
           value={oQueAjudaAcalmar}
           onChange={(evento) => aoMudarTexto(evento.target.value)}
           rows={3}
-          className="rounded-2xl border border-ed-line bg-ed-white px-4 py-3 text-ed-ink"
+          className="w-full rounded-2xl border border-ed-line bg-ed-white px-4 py-3 text-ed-ink"
         />
         <p className="text-sm text-ed-ink-soft">Opcional.</p>
       </div>

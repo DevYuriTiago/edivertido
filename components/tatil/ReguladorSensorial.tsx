@@ -96,25 +96,45 @@ export function ReguladorSensorial() {
             aria-hidden="true"
           />
 
-          {POSICOES_PREDEFINIDAS.map((posicao) => (
-            <button
-              key={posicao.nivel}
-              type="button"
-              onClick={() => definirNivel(posicao.nivel)}
-              className="absolute left-1/2 -ml-6 flex items-center justify-center rounded-full"
-              style={{
-                top: nivelParaY(posicao.nivel),
-                width: ALVO_TOQUE,
-                height: ALVO_TOQUE,
-              }}
-              aria-label={posicao.rotulo}
-            >
-              <span
-                className="h-2 w-2 rounded-full bg-ed-ink-soft"
-                aria-hidden="true"
-              />
-            </button>
-          ))}
+          {POSICOES_PREDEFINIDAS.map((posicao) => {
+            // Quando o polegar já está nessa posição, ele cobre o
+            // marcador por completo (0px de área clicável desobstruída,
+            // reprovado no Lighthouse: "target-size"). Clicar num
+            // marcador que já é o nível atual seria um no-op de
+            // qualquer forma, então vira só um ponto decorativo aqui.
+            const jaEstaNessaPosicao = Math.abs(nivel - posicao.nivel) < 0.02;
+
+            if (jaEstaNessaPosicao) {
+              return (
+                <span
+                  key={posicao.nivel}
+                  aria-hidden="true"
+                  className="absolute left-1/2 -ml-1 h-2 w-2 rounded-full bg-ed-ink-soft"
+                  style={{ top: nivelParaY(posicao.nivel) + ALVO_TOQUE / 2 - 4 }}
+                />
+              );
+            }
+
+            return (
+              <button
+                key={posicao.nivel}
+                type="button"
+                onClick={() => definirNivel(posicao.nivel)}
+                className="absolute left-1/2 -ml-6 flex items-center justify-center rounded-full"
+                style={{
+                  top: nivelParaY(posicao.nivel),
+                  width: ALVO_TOQUE,
+                  height: ALVO_TOQUE,
+                }}
+                aria-label={posicao.rotulo}
+              >
+                <span
+                  className="h-2 w-2 rounded-full bg-ed-ink-soft"
+                  aria-hidden="true"
+                />
+              </button>
+            );
+          })}
 
           <motion.div
             role="slider"

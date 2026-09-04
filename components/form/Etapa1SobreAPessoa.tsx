@@ -24,7 +24,7 @@ export function Etapa1SobreAPessoa({
           onChange={(evento) =>
             aoMudar("nomePessoaAtendida", evento.target.value)
           }
-          className="min-h-12 rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
+          className="min-h-12 w-full rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
         />
       </div>
 
@@ -37,7 +37,7 @@ export function Etapa1SobreAPessoa({
           type="text"
           value={idadeAproximada}
           onChange={(evento) => aoMudar("idadeAproximada", evento.target.value)}
-          className="min-h-12 rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
+          className="min-h-12 w-full rounded-2xl border border-ed-line bg-ed-white px-4 text-ed-ink"
         />
       </div>
 
