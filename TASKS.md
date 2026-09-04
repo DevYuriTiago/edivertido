@@ -81,7 +81,7 @@ Herói (com o Regulador acoplado), faixa de números, "Você já passou por isso
 - [~] Vídeo com poster, controles visíveis, sem autoplay com som — **nenhum vídeo real chegou ainda**, ver novo item em "Bloqueios abertos". Nenhum bloco do T6 tem vídeo; a regra fica satisfeita porque não existe vídeo nenhum para violá-la, não porque foi implementada
 - [x] Reveals disparam uma vez, não re-animam ao subir (`Revelar`, `viewport={{ once: true }}`)
 - [ ] LCP < 2.5s em Lighthouse mobile com throttling 4G — não medido nesta tarefa; fica para a auditoria completa do T12
-- [x] Faixa de números só renderiza se os dados existirem em `lib/conteudo/`; sem dado, o bloco não aparece (hoje: `null`, faltam tempo de operação e atendimentos)
+- [x] Faixa de números só renderiza se os dados existirem em `lib/conteudo/`; sem dado, o bloco não aparece. Os 4 dados chegaram em 2026-09-04 (nota/avaliações do Google, 5 anos, 2.000+ atendimentos) — bloco ligado
 
 ---
 
@@ -179,8 +179,8 @@ Não invente nenhum destes.
 - [x] Arquivo vetorial original da logo — **resolvido.** `public/marca/logo-edivertido-vetorial-fiel.svg` (com fundo branco) e `logo-edivertido-vetorial-sem-fundo.svg` (transparente) são vetores de verdade: poucos paths (13), cores separadas por camada, lemniscata "e+d" nítida, sem herança de autotrace. Substituem os JPEGs como logo principal a partir de agora. *Nota: os hex do arquivo (#17175B navy, #74C100 verde, #FFAA00 laranja) diferem ligeiramente dos tokens do CLAUDE.md §8 (#131351, #77B900, #FCA700, que já têm contraste verificado). Mantendo os tokens do CLAUDE.md como fonte da verdade para cor; o SVG serve para forma, não para recalibrar a paleta.*
 - [x] Autorização de imagem das famílias — **confirmada, geral e específica para a foto de desconforto** (usuário confirmou em 2026-09-04). Material real recebido em `public/marca/01.jpeg`–`05.jpeg`.
 - [ ] Acesso ao Google Business Profile — ainda bloqueado (temos só um print do painel, não acesso direto à conta)
-- [~] Nota e volume real de avaliações no Google — **5,0 ★, 84 avaliações**, confirmado via print do Google Business Profile. Bloco 2 continua fora do ar porque `CLAUDE.md` §6 exige nota+avaliações **e** tempo de operação **e** número de atendimentos juntos ("se qualquer um não puder ser comprovado, o bloco inteiro sai") — faltam os outros dois.
-- [ ] Tempo de operação do salão e número de atendimentos sustentável — bloqueia o bloco 2 mesmo com a nota do Google confirmada
+- [x] Nota e volume real de avaliações no Google — **5,0 ★, 84 avaliações**, confirmado via print do Google Business Profile.
+- [x] Tempo de operação do salão e número de atendimentos — **5 anos, mais de 2.000 atendimentos**, confirmado pela cliente em 2026-09-04. Atendimentos tratado como piso ("2.000+"), não número exato: a cliente informou "mais de 2k", que é literalmente a frase que `CLAUDE.md` §12 pede pra evitar ("não use 'mais de' pra disfarçar chute") — mas aqui não é chute nosso, é o dado que ela deu. Bloco 2 **ligado** com os 4 dados completos.
 - [ ] Respostas operacionais para as objeções do bloco 8 — bloqueia parte do T8
 - [ ] Confirmar handle correto do Instagram — `CLAUDE.md` §1 documenta `@edivertidooficial` (2.2k), mas o print recebido é de `@edbarbeiroinclusivo` (2.9k, conta do barbeiro). Pode ser conta pessoal separada da conta oficial da marca. **`lib/schema.ts` já usa `@edivertidooficial` no `sameAs` do JSON-LD** (o valor documentado, não o do print) — confirmar antes do deploy, porque `sameAs` errado no schema aponta pra conta errada publicamente.
 - [ ] Domínio do site (`NEXT_PUBLIC_SITE_URL`) — ainda bloqueado, necessário para T11
