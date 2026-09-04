@@ -51,11 +51,11 @@ O elemento-assinatura (`CLAUDE.md` §5.1). Slider vertical arrastável no herói
 `components/marca/TracoAssinatura.tsx`. Path pronto em `CLAUDE.md` §9. Modos `loader`, `progresso`, `divisor`.
 
 **Pronto quando:**
-- [ ] Desenho por `stroke-dashoffset` com `pathLength="1"`
-- [ ] Progresso acompanha o scroll sem salto
-- [ ] `aria-hidden="true"` sempre
-- [ ] Nível sensorial 0: aparece desenhado e estático
-- [ ] Só `transform` e dash; zero reflow
+- [x] Desenho por `stroke-dashoffset` com `pathLength="1"`
+- [x] Progresso acompanha o scroll sem salto (testado: 0%, 50% e 100% de scroll, traçado parcial correto no meio)
+- [x] `aria-hidden="true"` sempre
+- [x] Nível sensorial 0: aparece desenhado e estático (testado, herda o nível salvo do Regulador)
+- [x] Só `transform` e dash; zero reflow (dashoffset via style, cross-fade do loader via opacity)
 
 ---
 

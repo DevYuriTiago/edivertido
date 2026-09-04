@@ -1,10 +1,16 @@
 import { ReguladorSensorial } from "@/components/tatil/ReguladorSensorial";
+import { TracoAssinatura } from "@/components/marca/TracoAssinatura";
 
 export default function Home() {
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-16 px-6 py-16 md:py-32">
+      <TracoAssinatura
+        modo="progresso"
+        className="fixed right-4 top-24 z-50 w-24 sm:w-32"
+      />
+
       <header className="flex flex-col gap-3">
-        <p className="text-eyebrow text-ed-ink-soft">Fundação · T1 a T3</p>
+        <p className="text-eyebrow text-ed-ink-soft">Fundação · T1 a T4</p>
         <h1>Tokens de cor e escala tipográfica</h1>
         <p>
           Página de verificação da fundação do projeto: os três tons da marca
@@ -53,6 +59,36 @@ export default function Home() {
         <h2 id="regulador-titulo">Regulador sensorial</h2>
         <ReguladorSensorial />
       </section>
+
+      <section
+        aria-labelledby="traco-titulo"
+        className="flex flex-col items-center gap-8 border-t border-ed-line pt-12"
+      >
+        <h2 id="traco-titulo">Traço-assinatura</h2>
+
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-sm text-ed-ink-soft">
+            Loader (recarregue a página para ver de novo)
+          </p>
+          <TracoAssinatura modo="loader" className="w-48" />
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-sm text-ed-ink-soft">
+            Progresso (o mesmo do canto superior direito, acompanha o scroll)
+          </p>
+          <TracoAssinatura modo="progresso" className="w-48" />
+        </div>
+
+        <div className="flex w-full flex-col items-center gap-2">
+          <p className="text-sm text-ed-ink-soft">
+            Divisor (estático, usado entre blocos)
+          </p>
+          <TracoAssinatura modo="divisor" className="h-6 w-full" />
+        </div>
+      </section>
+
+      <div className="h-[60vh]" aria-hidden="true" />
     </main>
   );
 }
