@@ -90,14 +90,14 @@ Herói (com o Regulador acoplado), faixa de números, "Você já passou por isso
 Grade de fotos, lightbox ao toque, navegável por teclado e por setas. Sem física, sem swipe forçado, sem narrativa passo a passo. Detalhes em `CLAUDE.md` §6, bloco 5.
 
 **Pronto quando:**
-- [ ] Todas as fotos recebidas aparecem, incluindo as que mostram desconforto — nenhuma curadoria só-sorriso
-- [ ] Lightbox abre e fecha por clique, Enter, Esc; navega por seta
-- [ ] `alt` descreve a cena real, sem eufemismo e sem dramatizar
-- [ ] Frase de contexto acima da grade, nenhuma legenda tentando narrar passo a passo
-- [ ] Nível sensorial 0: grade estática, lightbox sem transição de fade longa
-- [ ] CTA abaixo da grade com origem própria no WhatsApp
-- [ ] Evento `galeria_aberta` dispara
-- [ ] **Autorização de imagem confirmada especificamente para as fotos de criança em desconforto**, além da autorização geral — não publicar sem isso
+- [x] Todas as fotos recebidas aparecem, incluindo as que mostram desconforto — as 5 fotos reais (01-05), nenhuma curadoria só-sorriso
+- [x] Lightbox abre e fecha por clique, Enter, Esc; navega por seta (testado no navegador, os 3 caminhos)
+- [x] `alt` descreve a cena real, sem eufemismo e sem dramatizar (revisado com a skill revisar-copy)
+- [x] Frase de contexto acima da grade, nenhuma legenda tentando narrar passo a passo
+- [x] Nível sensorial 0: grade sem reveal escalonado por foto; fade do lightbox tem teto de 200ms e escala com o nível
+- [x] CTA abaixo da grade com origem própria no WhatsApp (origem "galeria")
+- [x] Evento `galeria_aberta` dispara (testado: aparece no dataLayer)
+- [x] **Autorização de imagem confirmada especificamente para as fotos de criança em desconforto**, além da autorização geral (usuário confirmou em 2026-09-04, ver Bloqueios abertos)
 
 ## T8 — Blocos 6, 7, 8 e 9
 
