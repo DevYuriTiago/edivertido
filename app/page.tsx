@@ -7,6 +7,7 @@ import { ComoFunciona } from "@/components/blocos/ComoFunciona";
 import { ObjecoesFrequentes } from "@/components/blocos/ObjecoesFrequentes";
 import { ComoFuncionaOValor } from "@/components/blocos/ComoFuncionaOValor";
 import { PerfilSensorial } from "@/components/blocos/PerfilSensorial";
+import { OndeEstamos } from "@/components/blocos/OndeEstamos";
 import { TracoAssinatura } from "@/components/marca/TracoAssinatura";
 
 export default function Home() {
@@ -43,6 +44,9 @@ export default function Home() {
 
         <TracoAssinatura modo="divisor" className="mx-auto h-6 w-40" />
         <PerfilSensorial />
+
+        <TracoAssinatura modo="divisor" className="mx-auto h-6 w-40" />
+        <OndeEstamos />
       </main>
     </>
   );

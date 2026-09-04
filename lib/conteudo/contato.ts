@@ -50,3 +50,56 @@ export const HORARIO_FUNCIONAMENTO: Record<DiaSemana, FaixaHorario | null> = {
   sabado: { abre: "09:00", fecha: "18:00" },
   domingo: null,
 };
+
+const ORDEM_DIAS: DiaSemana[] = [
+  "segunda",
+  "terca",
+  "quarta",
+  "quinta",
+  "sexta",
+  "sabado",
+  "domingo",
+];
+
+const NOME_DIA: Record<DiaSemana, string> = {
+  segunda: "Segunda",
+  terca: "Terça",
+  quarta: "Quarta",
+  quinta: "Quinta",
+  sexta: "Sexta",
+  sabado: "Sábado",
+  domingo: "Domingo",
+};
+
+function mesmaFaixa(a: FaixaHorario | null, b: FaixaHorario | null): boolean {
+  if (a === null || b === null) return a === b;
+  return a.abre === b.abre && a.fecha === b.fecha;
+}
+
+// Agrupa dias consecutivos com o mesmo horário ("Segunda a Sábado: 09:00
+// às 18:00") em vez de repetir uma linha por dia. Genérico de propósito:
+// continua correto se o horário deixar de ser uniforme no futuro.
+export function faixasFormatadas(
+  horario: Record<DiaSemana, FaixaHorario | null> = HORARIO_FUNCIONAMENTO,
+): string[] {
+  const grupos: { dias: DiaSemana[]; faixa: FaixaHorario | null }[] = [];
+
+  for (const dia of ORDEM_DIAS) {
+    const faixa = horario[dia];
+    const grupoAtual = grupos[grupos.length - 1];
+    if (grupoAtual && mesmaFaixa(grupoAtual.faixa, faixa)) {
+      grupoAtual.dias.push(dia);
+    } else {
+      grupos.push({ dias: [dia], faixa });
+    }
+  }
+
+  return grupos.map(({ dias, faixa }) => {
+    const rotuloDias =
+      dias.length === 1
+        ? NOME_DIA[dias[0]]
+        : `${NOME_DIA[dias[0]]} a ${NOME_DIA[dias[dias.length - 1]]}`;
+    const rotuloHorario = faixa ? `${faixa.abre} às ${faixa.fecha}` : "Fechado";
+    return `${rotuloDias}: ${rotuloHorario}`;
+  });
+}

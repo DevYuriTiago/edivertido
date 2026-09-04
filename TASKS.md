@@ -137,8 +137,8 @@ Quatro etapas, progresso visível, tudo opcional exceto nome e contato. Monta me
 Localização, horários, CTA final.
 
 **Pronto quando:**
-- [ ] Mapa carrega sob clique, não no load
-- [ ] Horário e endereço vêm de `lib/conteudo/`, nunca hardcoded no componente
+- [x] Mapa carrega sob clique, não no load (testado: iframe só existe no DOM depois do clique em "Ver mapa"; o endereço resolvido pelo Google bateu com o real)
+- [x] Horário e endereço vêm de `lib/conteudo/`, nunca hardcoded no componente (`enderecoCompleto()`, `faixasFormatadas()`)
 
 ## T11 — SEO, LGPD e metadados
 
