@@ -11,6 +11,10 @@
   --ed-ink: #131351;
   --ed-ink-soft: #4a4b72;
   --ed-line: #dcdce8;
+
+  /* Sobrescrito antes da primeira pintura pelo script em app/layout.tsx;
+     0.6 aqui é só o fallback para JS desabilitado. */
+  --ed-nivel: 0.6;
 }
 
 @theme inline {

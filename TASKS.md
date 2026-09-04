@@ -169,13 +169,16 @@ Metadata API. JSON-LD `HairSalon` + `LocalBusiness`. `sitemap.ts`, `robots.ts`. 
 
 Não invente nenhum destes.
 
-- [ ] Número de WhatsApp
-- [ ] Horário de funcionamento
-- [ ] Nome e formação da terapeuta ABA
-- [ ] CNPJ e razão social
-- [ ] Estacionamento? Acesso para cadeirante? Banheiro adaptado?
-- [ ] Arquivo vetorial original da logo
-- [ ] Autorização de imagem das famílias — **em especial, confirmação específica para as fotos de criança em desconforto** antes de publicar (bloqueia T7)
-- [ ] Acesso ao Google Business Profile
-- [ ] **Nota e volume real de avaliações no Google** — bloqueia o bloco 2
+- [x] Número de WhatsApp — **+55 81 98804-1234**, confirmado em dois lugares (flyer promocional e Google Business Profile). *Nota: o número digitado em chat vinha sem o "9" (81 8804-1234); o painel de origem (perfil do Google) usa 98804-1234, que é o formato válido de celular — usando este.*
+- [x] Horário de funcionamento — **segunda a sábado, 9h–18h; domingo fechado** (Google Business Profile; a entrada de segunda-feira no print trazia um aviso de feriado, mas o padrão dos outros dias confirma o horário regular).
+- [ ] Nome e formação da terapeuta ABA — **ainda bloqueado.** A bio do Instagram do barbeiro (@edbarbeiroinclusivo) se autodeclara "Terapeuta ABA" mas diz "Cursando Terapia Ocupacional" (ainda estudante, formação diferente) — não é credencial verificável. Não usar como fonte. Nenhuma tarefa do T2–T12 exige publicar nome/formação da terapeuta hoje; só entra se vier confirmação real.
+- [ ] CNPJ e razão social — ainda bloqueado (necessário para T11, página de privacidade)
+- [ ] Estacionamento? Acesso para cadeirante? Banheiro adaptado? — ainda bloqueado
+- [ ] Arquivo vetorial original da logo — ainda bloqueado. `public/marca/` tem os JPEGs + SVGs autotrace já catalogados no CLAUDE.md §9; nenhum vetor de marca de verdade apareceu ainda.
+- [x] Autorização de imagem das famílias — **confirmada, geral e específica para a foto de desconforto** (usuário confirmou em 2026-09-04). Material real recebido em `public/marca/01.jpeg`–`05.jpeg`.
+- [ ] Acesso ao Google Business Profile — ainda bloqueado (temos só um print do painel, não acesso direto à conta)
+- [~] Nota e volume real de avaliações no Google — **5,0 ★, 84 avaliações**, confirmado via print do Google Business Profile. Bloco 2 continua fora do ar porque `CLAUDE.md` §6 exige nota+avaliações **e** tempo de operação **e** número de atendimentos juntos ("se qualquer um não puder ser comprovado, o bloco inteiro sai") — faltam os outros dois.
+- [ ] Tempo de operação do salão e número de atendimentos sustentável — bloqueia o bloco 2 mesmo com a nota do Google confirmada
 - [ ] Respostas operacionais para as objeções do bloco 8 — bloqueia parte do T8
+- [ ] Confirmar handle correto do Instagram — `CLAUDE.md` §1 documenta `@edivertidooficial` (2.2k), mas o print recebido é de `@edbarbeiroinclusivo` (2.9k, conta do barbeiro). Pode ser conta pessoal separada da conta oficial da marca — checar antes do T11 (JSON-LD `sameAs`).
+- [ ] Domínio do site (`NEXT_PUBLIC_SITE_URL`) — ainda bloqueado, necessário para T11

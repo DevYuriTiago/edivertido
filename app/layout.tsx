@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Archivo, Atkinson_Hyperlegible_Next } from "next/font/google";
+import { SensorialProvider } from "@/lib/sensorial";
 import "./globals.css";
+
+// Precisa rodar antes da primeira pintura para não haver flash de estado
+// errado. Mantém a mesma lógica de lib/sensorial.ts (chave, 0.6, 0), mas
+// duplicada aqui de propósito: roda como script cru, fora da árvore React.
+const SCRIPT_NIVEL_SENSORIAL = `(function(){try{var c="ed-sensorial-nivel";var s=localStorage.getItem(c);var n;if(s!==null){var v=parseFloat(s);if(!isNaN(v))n=v;}if(n===undefined){n=matchMedia("(prefers-reduced-motion: reduce)").matches?0:0.6;}n=Math.min(1,Math.max(0,n));document.documentElement.style.setProperty("--ed-nivel",String(n));}catch(e){}})();`;
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -31,7 +37,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${archivo.variable} ${atkinson.variable}`}>
       <body className="bg-ed-surface text-ed-ink font-body antialiased">
-        {children}
+        <script
+          dangerouslySetInnerHTML={{ __html: SCRIPT_NIVEL_SENSORIAL }}
+        />
+        <SensorialProvider>{children}</SensorialProvider>
       </body>
     </html>
   );
