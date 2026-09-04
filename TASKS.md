@@ -64,11 +64,11 @@ O elemento-assinatura (`CLAUDE.md` §5.1). Slider vertical arrastável no herói
 Header mínimo (logo + CTA). Barra fixa inferior no mobile (WhatsApp + Como chegar). "Pular para o conteúdo". `lib/whatsapp.ts` com mensagem por origem. Eventos de analytics.
 
 **Pronto quando:**
-- [ ] Navegação por teclado com foco visível (outline 3px laranja, offset 2px)
-- [ ] Cada CTA gera mensagem distinta e coerente com a origem
-- [ ] Barra mobile não cobre conteúdo nem o último elemento focável
-- [ ] Legível a 200% de zoom sem scroll horizontal
-- [ ] Eventos disparando: `whatsapp_click` com origem
+- [x] Navegação por teclado com foco visível (outline 3px laranja, offset 2px — regra global em `:focus-visible`)
+- [x] Cada CTA gera mensagem distinta e coerente com a origem (só a origem `barra-fixa` existe por enquanto; hero/galeria/valor/final entram nos blocos que os usam)
+- [x] Barra mobile não cobre conteúdo nem o último elemento focável (testado: `pb-24` no wrapper, fim de página com espaço livre acima da barra)
+- [x] Legível a 200% de zoom sem scroll horizontal (testado: `scrollWidth === clientWidth`)
+- [x] Eventos disparando: `whatsapp_click` com origem (testado: `dataLayer` recebe `{evento, origem}`)
 
 ---
 

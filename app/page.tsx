@@ -3,14 +3,17 @@ import { TracoAssinatura } from "@/components/marca/TracoAssinatura";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex max-w-3xl flex-col gap-16 px-6 py-16 md:py-32">
+    <main
+      id="conteudo"
+      className="mx-auto flex max-w-3xl flex-col gap-16 px-6 py-16 md:py-32"
+    >
       <TracoAssinatura
         modo="progresso"
         className="fixed right-4 top-24 z-50 w-24 sm:w-32"
       />
 
       <header className="flex flex-col gap-3">
-        <p className="text-eyebrow text-ed-ink-soft">Fundação · T1 a T4</p>
+        <p className="text-eyebrow text-ed-ink-soft">Fundação · T1 a T5</p>
         <h1>Tokens de cor e escala tipográfica</h1>
         <p>
           Página de verificação da fundação do projeto: os três tons da marca

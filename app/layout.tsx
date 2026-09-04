@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Archivo, Atkinson_Hyperlegible_Next } from "next/font/google";
 import { SensorialProvider } from "@/lib/sensorial";
+import { PularParaConteudo } from "@/components/casca/PularParaConteudo";
+import { Header } from "@/components/casca/Header";
+import { BarraFixaMobile } from "@/components/casca/BarraFixaMobile";
 import "./globals.css";
 
 // Precisa rodar antes da primeira pintura para não haver flash de estado
@@ -48,7 +51,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: SCRIPT_NIVEL_SENSORIAL }}
         />
         <SensorialProvider>
-          <div className="ed-superficie-sensorial">{children}</div>
+          <PularParaConteudo />
+          {/* Header e barra mobile ficam fora do filtro de saturação de
+              propósito: o CTA precisa continuar alcançável e legível em
+              qualquer nível sensorial (CLAUDE.md §5, regra 1). */}
+          <Header />
+          <div className="ed-superficie-sensorial pb-24 md:pb-0">
+            {children}
+          </div>
+          <BarraFixaMobile />
         </SensorialProvider>
       </body>
     </html>

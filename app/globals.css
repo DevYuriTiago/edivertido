@@ -47,6 +47,12 @@ body {
   color: var(--ed-ink);
 }
 
+/* CLAUDE.md §10: foco visível e forte em todo interativo, sem exceção. */
+:focus-visible {
+  outline: 3px solid var(--ed-orange);
+  outline-offset: 2px;
+}
+
 /* Escurece/dessatura o conteúdo conforme o nível sensorial cai — mantido
    fora de <body> de propósito: filter em body vira containing block e
    quebra o posicionamento de elementos fixed (barra de WhatsApp do T5). */
