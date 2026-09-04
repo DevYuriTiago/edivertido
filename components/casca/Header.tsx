@@ -10,7 +10,7 @@ export function Header() {
         <Logo className="h-10 w-auto" />
         <BotaoWhatsApp
           origem="barra-fixa"
-          className="hidden min-h-12 items-center rounded-full bg-ed-orange px-6 text-sm font-bold text-ed-navy shadow-ed transition-transform hover:scale-[1.02] md:inline-flex"
+          className="hover-tatil hidden min-h-12 items-center rounded-full bg-ed-orange px-6 text-sm font-bold text-ed-navy shadow-ed md:inline-flex"
         >
           Falar no WhatsApp
         </BotaoWhatsApp>

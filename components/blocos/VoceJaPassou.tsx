@@ -13,10 +13,15 @@ export function VoceJaPassou() {
         <h2 id="dor-titulo">Você já passou por isso?</h2>
       </Revelar>
 
-      <ul className="flex list-none flex-col gap-4">
+      <ul role="list" className="flex list-none flex-col gap-4">
         {ITENS_DOR.map((item, indice) => (
-          <Revelar key={item.texto} atraso={indice * 0.06}>
-            <li className="border-l-2 border-ed-line pl-4">{item.texto}</li>
+          <Revelar
+            key={item.texto}
+            as="li"
+            atraso={indice * 0.06}
+            className="border-l-2 border-ed-line pl-4"
+          >
+            {item.texto}
           </Revelar>
         ))}
       </ul>

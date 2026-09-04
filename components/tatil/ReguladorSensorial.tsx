@@ -8,9 +8,9 @@ const ALTURA_TRILHO = 288;
 const ALVO_TOQUE = 48;
 
 const POSICOES_PREDEFINIDAS = [
-  { nivel: 1, rotulo: "Definir regulador para pleno estímulo" },
-  { nivel: 0.6, rotulo: "Definir regulador para o padrão" },
-  { nivel: 0, rotulo: "Definir regulador para calmo" },
+  { nivel: 1, rotuloCurto: "Pleno", rotulo: "Definir regulador para pleno estímulo" },
+  { nivel: 0.6, rotuloCurto: "Padrão", rotulo: "Definir regulador para o padrão" },
+  { nivel: 0, rotuloCurto: "Calmo", rotulo: "Definir regulador para calmo" },
 ] as const;
 
 function textoValor(nivel: number) {
@@ -85,70 +85,94 @@ export function ReguladorSensorial() {
         Diminua o barulho do mundo
       </p>
 
-      <div
-        className="relative"
-        style={{ width: ALVO_TOQUE, height: ALTURA_TRILHO + ALVO_TOQUE }}
-      >
+      <div className="flex items-start gap-2">
         <div
-          className="absolute left-1/2 -ml-1 w-2 rounded-full bg-ed-surface-2"
-          style={{ top: ALVO_TOQUE / 2, height: ALTURA_TRILHO }}
-          aria-hidden="true"
-        />
+          className="relative"
+          style={{ width: ALVO_TOQUE, height: ALTURA_TRILHO + ALVO_TOQUE }}
+        >
+          <div
+            className="absolute left-1/2 -ml-1 w-2 rounded-full bg-ed-ink-soft"
+            style={{ top: ALVO_TOQUE / 2, height: ALTURA_TRILHO }}
+            aria-hidden="true"
+          />
 
-        {POSICOES_PREDEFINIDAS.map((posicao) => (
-          <button
-            key={posicao.nivel}
-            type="button"
-            onClick={() => definirNivel(posicao.nivel)}
-            className="absolute left-1/2 -ml-6 flex items-center justify-center rounded-full"
+          {POSICOES_PREDEFINIDAS.map((posicao) => (
+            <button
+              key={posicao.nivel}
+              type="button"
+              onClick={() => definirNivel(posicao.nivel)}
+              className="absolute left-1/2 -ml-6 flex items-center justify-center rounded-full"
+              style={{
+                top: nivelParaY(posicao.nivel),
+                width: ALVO_TOQUE,
+                height: ALVO_TOQUE,
+              }}
+              aria-label={posicao.rotulo}
+            >
+              <span
+                className="h-2 w-2 rounded-full bg-ed-ink-soft"
+                aria-hidden="true"
+              />
+            </button>
+          ))}
+
+          <motion.div
+            role="slider"
+            tabIndex={0}
+            aria-labelledby={tituloId}
+            aria-orientation="vertical"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(nivel * 100)}
+            aria-valuetext={textoValor(nivel)}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: ALTURA_TRILHO }}
+            dragElastic={0.04}
+            dragMomentum={false}
+            onDragStart={() => {
+              arrastandoRef.current = true;
+            }}
+            onDrag={sincronizarDoY}
+            onDragEnd={aoFimDoArrasto}
+            onKeyDown={aoTeclado}
+            whileDrag={{ scale: 1.08 }}
+            transition={{ duration: 0.08 }}
             style={{
-              top: nivelParaY(posicao.nivel),
+              y,
+              touchAction: "none",
               width: ALVO_TOQUE,
               height: ALVO_TOQUE,
             }}
-            aria-label={posicao.rotulo}
+            className="absolute left-1/2 top-0 -ml-6 z-10 flex cursor-grab items-center justify-center rounded-full bg-ed-navy shadow-ed active:cursor-grabbing focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-ed-orange"
           >
             <span
-              className="h-2 w-2 rounded-full bg-ed-line"
+              className="h-2 w-2 rounded-full bg-ed-white"
               aria-hidden="true"
             />
-          </button>
-        ))}
+          </motion.div>
+        </div>
 
-        <motion.div
-          role="slider"
-          tabIndex={0}
-          aria-labelledby={tituloId}
-          aria-orientation="vertical"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(nivel * 100)}
-          aria-valuetext={textoValor(nivel)}
-          drag="y"
-          dragConstraints={{ top: 0, bottom: ALTURA_TRILHO }}
-          dragElastic={0.04}
-          dragMomentum={false}
-          onDragStart={() => {
-            arrastandoRef.current = true;
-          }}
-          onDrag={sincronizarDoY}
-          onDragEnd={aoFimDoArrasto}
-          onKeyDown={aoTeclado}
-          whileDrag={{ scale: 1.08 }}
-          transition={{ duration: 0.08 }}
-          style={{
-            y,
-            touchAction: "none",
-            width: ALVO_TOQUE,
-            height: ALVO_TOQUE,
-          }}
-          className="absolute left-1/2 top-0 -ml-6 z-10 flex cursor-grab items-center justify-center rounded-full bg-ed-navy shadow-ed active:cursor-grabbing focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-ed-orange"
+        {/* Coluna própria para os rótulos, com largura declarada: evita
+            que o texto vaze do layout e cause scroll horizontal (achado
+            da auditoria pós-T6). */}
+        <div
+          className="relative"
+          style={{ width: 72, height: ALTURA_TRILHO + ALVO_TOQUE }}
+          aria-hidden="true"
         >
-          <span
-            className="h-2 w-2 rounded-full bg-ed-white"
-            aria-hidden="true"
-          />
-        </motion.div>
+          {POSICOES_PREDEFINIDAS.map((posicao) => (
+            <span
+              key={posicao.nivel}
+              className="absolute whitespace-nowrap text-sm text-ed-ink-soft"
+              style={{
+                top: nivelParaY(posicao.nivel) + ALVO_TOQUE / 2,
+                transform: "translateY(-50%)",
+              }}
+            >
+              {posicao.rotuloCurto}
+            </span>
+          ))}
+        </div>
       </div>
 
       <p

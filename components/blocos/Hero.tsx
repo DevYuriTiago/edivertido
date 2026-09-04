@@ -16,7 +16,7 @@ export function Hero() {
         <p>{HERO.subtitulo}</p>
         <BotaoWhatsApp
           origem="hero"
-          className="inline-flex min-h-12 items-center rounded-full bg-ed-orange px-8 text-base font-bold text-ed-navy shadow-ed transition-transform hover:scale-[1.02]"
+          className="hover-tatil inline-flex min-h-12 items-center rounded-full bg-ed-orange px-8 text-base font-bold text-ed-navy shadow-ed"
         >
           Falar no WhatsApp
         </BotaoWhatsApp>

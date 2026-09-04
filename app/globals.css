@@ -53,6 +53,15 @@ body {
   outline-offset: 2px;
 }
 
+/* Microinteração de toque em CTAs, escalada pelo nível sensorial: no
+   calmo (--ed-nivel: 0) o hover não desloca nada. */
+.hover-tatil {
+  transition: transform 0.15s ease;
+}
+.hover-tatil:hover {
+  transform: scale(calc(1 + 0.02 * var(--ed-nivel)));
+}
+
 /* Escurece/dessatura o conteúdo conforme o nível sensorial cai — mantido
    fora de <body> de propósito: filter em body vira containing block e
    quebra o posicionamento de elementos fixed (barra de WhatsApp do T5). */

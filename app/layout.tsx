@@ -4,6 +4,7 @@ import { SensorialProvider } from "@/lib/sensorial";
 import { PularParaConteudo } from "@/components/casca/PularParaConteudo";
 import { Header } from "@/components/casca/Header";
 import { BarraFixaMobile } from "@/components/casca/BarraFixaMobile";
+import { LoaderInicial } from "@/components/casca/LoaderInicial";
 import "./globals.css";
 
 // Precisa rodar antes da primeira pintura para não haver flash de estado
@@ -51,6 +52,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: SCRIPT_NIVEL_SENSORIAL }}
         />
         <SensorialProvider>
+          <LoaderInicial />
           <PularParaConteudo />
           {/* Header e barra mobile ficam fora do filtro de saturação de
               propósito: o CTA precisa continuar alcançável e legível em

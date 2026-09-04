@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <TracoAssinatura
         modo="progresso"
-        className="fixed bottom-4 right-4 z-30 hidden w-16 sm:block"
+        className="fixed bottom-4 right-4 z-30 hidden w-16 md:block"
       />
 
       <main id="conteudo">
