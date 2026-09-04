@@ -3,10 +3,11 @@ import { TELEFONE_WHATSAPP_DIGITOS } from "@/lib/conteudo/contato";
 // Única fonte das mensagens de WhatsApp do site — CLAUDE.md §7. Nunca monte
 // uma URL de WhatsApp fora daqui: a origem muda a mensagem, e a mensagem
 // muda a qualidade da conversa que chega para a cliente.
-export type OrigemWhatsApp = "barra-fixa";
+export type OrigemWhatsApp = "barra-fixa" | "hero";
 
 const MENSAGENS: Record<OrigemWhatsApp, string> = {
   "barra-fixa": "Vim pelo site e queria falar com vocês.",
+  hero: "Vim pelo site, queria saber como funciona.",
 };
 
 export function linkWhatsApp(origem: OrigemWhatsApp): string {

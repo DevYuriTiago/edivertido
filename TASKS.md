@@ -77,11 +77,11 @@ Header mínimo (logo + CTA). Barra fixa inferior no mobile (WhatsApp + Como cheg
 Herói (com o Regulador acoplado), faixa de números, "Você já passou por isso?", "O que muda aqui". Copy exata do briefing, vinda de `lib/conteudo/`.
 
 **Pronto quando:**
-- [ ] H1 literal do briefing
-- [ ] Vídeo com poster, controles visíveis, sem autoplay com som
-- [ ] Reveals disparam uma vez, não re-animam ao subir
-- [ ] LCP < 2.5s em Lighthouse mobile com throttling 4G
-- [ ] Faixa de números só renderiza se os dados existirem em `lib/conteudo/`; sem dado, o bloco não aparece — nunca com valor de exemplo
+- [x] H1 literal do briefing
+- [~] Vídeo com poster, controles visíveis, sem autoplay com som — **nenhum vídeo real chegou ainda**, ver novo item em "Bloqueios abertos". Nenhum bloco do T6 tem vídeo; a regra fica satisfeita porque não existe vídeo nenhum para violá-la, não porque foi implementada
+- [x] Reveals disparam uma vez, não re-animam ao subir (`Revelar`, `viewport={{ once: true }}`)
+- [ ] LCP < 2.5s em Lighthouse mobile com throttling 4G — não medido nesta tarefa; fica para a auditoria completa do T12
+- [x] Faixa de números só renderiza se os dados existirem em `lib/conteudo/`; sem dado, o bloco não aparece (hoje: `null`, faltam tempo de operação e atendimentos)
 
 ---
 
@@ -182,3 +182,4 @@ Não invente nenhum destes.
 - [ ] Respostas operacionais para as objeções do bloco 8 — bloqueia parte do T8
 - [ ] Confirmar handle correto do Instagram — `CLAUDE.md` §1 documenta `@edivertidooficial` (2.2k), mas o print recebido é de `@edbarbeiroinclusivo` (2.9k, conta do barbeiro). Pode ser conta pessoal separada da conta oficial da marca — checar antes do T11 (JSON-LD `sameAs`).
 - [ ] Domínio do site (`NEXT_PUBLIC_SITE_URL`) — ainda bloqueado, necessário para T11
+- [ ] Vídeo real do salão/atendimento — bloqueia o critério de vídeo do T6 (e possivelmente os depoimentos em vídeo do T8). Só existem fotos (`public/marca/01.jpeg`-`05.jpeg`); nenhum arquivo de vídeo foi recebido
