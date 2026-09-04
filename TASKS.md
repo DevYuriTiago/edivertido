@@ -24,11 +24,11 @@ Scaffold Next.js 15 + TS strict + Tailwind v4 + shadcn. Fonts self-hosted via `n
 `lib/sensorial.ts`: contexto com nível de 0 (calmo) a 1 (pleno), persistido em `localStorage`. Absorve `prefers-reduced-motion`. Expõe `useSensorial()` com o nível e derivados (`movimento`, `saturacao`, `espacamento`, `somDeVideo`).
 
 **Pronto quando:**
-- [ ] `prefers-reduced-motion: reduce` inicia o nível em 0
-- [ ] Padrão sem preferência: 0.6, nunca 1
-- [ ] Persiste entre rotas e após recarregar
-- [ ] Sem flash de estado errado na hidratação
-- [ ] Nenhum componente lê a media query direto
+- [x] `prefers-reduced-motion: reduce` inicia o nível em 0
+- [x] Padrão sem preferência: 0.6, nunca 1
+- [x] Persiste entre rotas e após recarregar (localStorage, provider no layout raiz)
+- [x] Sem flash de estado errado na hidratação (script bloqueante + `suppressHydrationWarning` no `<html>`)
+- [x] Nenhum componente lê a media query direto
 
 ---
 
@@ -37,12 +37,12 @@ Scaffold Next.js 15 + TS strict + Tailwind v4 + shadcn. Fonts self-hosted via `n
 O elemento-assinatura (`CLAUDE.md` §5.1). Slider vertical arrastável no herói, com a frase de fecho no extremo calmo.
 
 **Pronto quando:**
-- [ ] Arrasto com resposta abaixo de 100ms
-- [ ] Operável por seta do teclado e por clique em 3 posições
-- [ ] `role="slider"` com `aria-valuenow`, `aria-valuetext` em texto humano
-- [ ] Página inteira reage: movimento, saturação e espaçamento
-- [ ] Nível 0 deixa a página completamente estática
-- [ ] Não sequestra o scroll vertical no mobile
+- [x] Arrasto com resposta abaixo de 100ms (framer-motion liga o ponteiro direto no motion value, sem debounce)
+- [x] Operável por seta do teclado e por clique em 3 posições
+- [x] `role="slider"` com `aria-valuenow`, `aria-valuetext` em texto humano
+- [~] Página inteira reage: movimento, saturação e espaçamento — saturação confirmada visualmente (filtro em `.ed-superficie-sensorial`); espaçamento e movimento são consumidos pela infraestrutura (`--ed-espacamento`, `useSensorial().movimento`) mas só ficam visíveis quando blocos reais existirem, a partir do T6
+- [x] Nível 0 deixa a página completamente estática (polegar fixo no fim do trilho, frase de fecho aparece)
+- [x] Não sequestra o scroll vertical no mobile (`touch-action: none` só no polegar de 48×48, não na página)
 
 ---
 
@@ -174,7 +174,7 @@ Não invente nenhum destes.
 - [ ] Nome e formação da terapeuta ABA — **ainda bloqueado.** A bio do Instagram do barbeiro (@edbarbeiroinclusivo) se autodeclara "Terapeuta ABA" mas diz "Cursando Terapia Ocupacional" (ainda estudante, formação diferente) — não é credencial verificável. Não usar como fonte. Nenhuma tarefa do T2–T12 exige publicar nome/formação da terapeuta hoje; só entra se vier confirmação real.
 - [ ] CNPJ e razão social — ainda bloqueado (necessário para T11, página de privacidade)
 - [ ] Estacionamento? Acesso para cadeirante? Banheiro adaptado? — ainda bloqueado
-- [ ] Arquivo vetorial original da logo — ainda bloqueado. `public/marca/` tem os JPEGs + SVGs autotrace já catalogados no CLAUDE.md §9; nenhum vetor de marca de verdade apareceu ainda.
+- [x] Arquivo vetorial original da logo — **resolvido.** `public/marca/logo-edivertido-vetorial-fiel.svg` (com fundo branco) e `logo-edivertido-vetorial-sem-fundo.svg` (transparente) são vetores de verdade: poucos paths (13), cores separadas por camada, lemniscata "e+d" nítida, sem herança de autotrace. Substituem os JPEGs como logo principal a partir de agora. *Nota: os hex do arquivo (#17175B navy, #74C100 verde, #FFAA00 laranja) diferem ligeiramente dos tokens do CLAUDE.md §8 (#131351, #77B900, #FCA700, que já têm contraste verificado). Mantendo os tokens do CLAUDE.md como fonte da verdade para cor; o SVG serve para forma, não para recalibrar a paleta.*
 - [x] Autorização de imagem das famílias — **confirmada, geral e específica para a foto de desconforto** (usuário confirmou em 2026-09-04). Material real recebido em `public/marca/01.jpeg`–`05.jpeg`.
 - [ ] Acesso ao Google Business Profile — ainda bloqueado (temos só um print do painel, não acesso direto à conta)
 - [~] Nota e volume real de avaliações no Google — **5,0 ★, 84 avaliações**, confirmado via print do Google Business Profile. Bloco 2 continua fora do ar porque `CLAUDE.md` §6 exige nota+avaliações **e** tempo de operação **e** número de atendimentos juntos ("se qualquer um não puder ser comprovado, o bloco inteiro sai") — faltam os outros dois.

@@ -35,12 +35,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${archivo.variable} ${atkinson.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${archivo.variable} ${atkinson.variable}`}
+      // O script abaixo escreve --ed-nivel no style deste elemento antes da
+      // hidratação, de propósito (evita flash de estado errado). React vai
+      // ver um mismatch aqui; é esperado, mesmo padrão do next-themes.
+      suppressHydrationWarning
+    >
       <body className="bg-ed-surface text-ed-ink font-body antialiased">
         <script
           dangerouslySetInnerHTML={{ __html: SCRIPT_NIVEL_SENSORIAL }}
         />
-        <SensorialProvider>{children}</SensorialProvider>
+        <SensorialProvider>
+          <div className="ed-superficie-sensorial">{children}</div>
+        </SensorialProvider>
       </body>
     </html>
   );

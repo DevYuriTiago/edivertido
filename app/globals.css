@@ -15,6 +15,13 @@
   /* Sobrescrito antes da primeira pintura pelo script em app/layout.tsx;
      0.6 aqui é só o fallback para JS desabilitado. */
   --ed-nivel: 0.6;
+
+  /* Derivados do nível sensorial — recalculados pelo navegador sempre que
+     --ed-nivel muda, sem precisar de JS. Calmo (0) = mais respiro entre
+     blocos; pleno (1) = espaçamento de base. Ver lib/sensorial.ts. */
+  --ed-espacamento: calc(1.5 - var(--ed-nivel) * 0.5);
+
+  --ed-sombra: 0 2px 16px rgba(27, 28, 99, 0.08);
 }
 
 @theme inline {
@@ -31,11 +38,20 @@
 
   --font-display: var(--font-archivo);
   --font-body: var(--font-atkinson);
+
+  --shadow-ed: var(--ed-sombra);
 }
 
 body {
   background: var(--ed-surface);
   color: var(--ed-ink);
+}
+
+/* Escurece/dessatura o conteúdo conforme o nível sensorial cai — mantido
+   fora de <body> de propósito: filter em body vira containing block e
+   quebra o posicionamento de elementos fixed (barra de WhatsApp do T5). */
+.ed-superficie-sensorial {
+  filter: saturate(calc(50% + var(--ed-nivel) * 50%));
 }
 
 /* Escala tipográfica — CLAUDE.md §8, mobile por padrão, desktop a partir de 768px */
