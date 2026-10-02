@@ -30,3 +30,8 @@ next-env.d.ts
 
 # Verificação local (Playwright MCP)
 .playwright-mcp/
+
+# Impeccable: binário específico de plataforma (baixado pelo instalador) e config local
+.claude/skills/impeccable/scripts/bin/
+.impeccable/config.local.json
+.impeccable/hook.cache.json
