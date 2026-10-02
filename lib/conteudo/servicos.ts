@@ -26,4 +26,4 @@ export const SERVICOS: Servico[] = [
   { nome: "Atendimento inclusivo", icone: "infinito" },
 ];
 
-export const SERVICOS_TITULO = "Tudo o que você precisa, num lugar só";
+export const SERVICOS_TITULO = "Um salão completo, que se encaixa em você";

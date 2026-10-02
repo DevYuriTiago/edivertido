@@ -22,7 +22,7 @@ export function FaixaNumeros() {
           Nota {nota}
           <Star weight="fill" className="text-ed-orange" aria-hidden="true" />
         </span>{" "}
-        no Google em {NUMEROS.avaliacoesGoogle} avaliações.{" "}
+        no Google, em {NUMEROS.avaliacoesGoogle} avaliações.{" "}
         <span className="whitespace-nowrap">{NUMEROS.anosDeOperacao} anos</span>{" "}
         cortando cabelo em Recife.{" "}
         {NUMEROS.atendimentosAproximado ? "Mais de " : ""}

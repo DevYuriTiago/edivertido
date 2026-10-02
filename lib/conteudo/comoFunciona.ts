@@ -7,35 +7,38 @@ export type EtapaComoFunciona = {
 // etapa usa só temas já estabelecidos em outros blocos (terapeuta ABA,
 // tempo da pessoa, valor combinado antes) — nenhuma promessa operacional
 // nova sem confirmação da cliente.
+export const COMO_FUNCIONA_INTRO =
+  "Nenhuma etapa é surpresa. É assim do primeiro oi até o último fio.";
+
 export const ETAPAS_COMO_FUNCIONA: EtapaComoFunciona[] = [
   {
     titulo: "Você chama no WhatsApp",
     descricao:
-      "Conta o que precisa. A conversa já ajuda a gente a entender o contexto antes de marcar.",
+      "Conta quem vai ser atendido e o que costuma ser difícil. Ninguém julga, ninguém apressa.",
   },
   {
     titulo: "Perfil sensorial, se quiser",
     descricao:
-      "Um formulário curto e opcional ajuda a gente a se preparar antes da pessoa chegar.",
+      "Barulho, toque, luz: você conta o que incomoda e a equipe se prepara antes da chegada.",
   },
   {
     titulo: "O valor é combinado antes",
     descricao:
-      "Sem surpresa na hora de pagar. O valor é fechado antes da visita, não depois.",
+      "Você sabe quanto vai pagar antes de sair de casa. Sem surpresa no caixa.",
   },
   {
     titulo: "Chegada sem fila",
     descricao:
-      "O horário é reservado só para aquele atendimento, sem gente esperando do lado.",
+      "O horário é só daquele atendimento. Ninguém esperando do lado.",
   },
   {
-    titulo: "Atendimento com terapeuta ABA",
+    titulo: "Terapeuta ABA junto",
     descricao:
-      "Quem corta e quem acompanha já sabem o que fazer se for preciso parar ou ajustar o ritmo.",
+      "Quem corta e quem acompanha sabem quando pausar, mudar o ritmo ou tentar de outro jeito.",
   },
   {
-    titulo: "O corte termina do jeito que der certo",
+    titulo: "Termina do jeito que der certo",
     descricao:
-      "Sem roteiro fixo. O objetivo é terminar de um jeito que funcione para aquela pessoa.",
+      "Na cadeira, no colo, no chão ou no carrinho. O que importa é terminar bem para aquela pessoa.",
   },
 ];

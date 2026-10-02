@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Peca } from "@/components/puzzle/Peca";
 import { bordasNaGrade } from "@/lib/puzzle";
 import { useSensorial } from "@/lib/sensorial";
-import { ETAPAS_COMO_FUNCIONA } from "@/lib/conteudo/comoFunciona";
+import { COMO_FUNCIONA_INTRO, ETAPAS_COMO_FUNCIONA } from "@/lib/conteudo/comoFunciona";
 
 // A reprise do momento do herói: as seis etapas chegam e se encaixam uma
 // atrás da outra, na ordem em que acontecem. Aqui a numeração é real:
@@ -86,7 +86,7 @@ export function ComoFunciona() {
           Como funciona
         </h2>
         <p className="medida mt-5 text-lg">
-          Do primeiro oi no WhatsApp até o fim do corte, nesta ordem.
+          {COMO_FUNCIONA_INTRO}
         </p>
 
         <div className="so-ruido mt-14 px-[6%] md:hidden">

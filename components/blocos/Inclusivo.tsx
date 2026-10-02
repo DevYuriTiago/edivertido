@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Peca } from "@/components/puzzle/Peca";
 import { PROVAS } from "@/lib/conteudo/provas";
+import { INCLUSIVO_TEXTO, INCLUSIVO_TITULO } from "@/lib/conteudo/inclusivo";
 
 export function Inclusivo() {
   return (
@@ -28,13 +29,11 @@ export function Inclusivo() {
         </div>
 
         <div className="lg:col-span-7">
-          <h2 id="inclusivo-titulo" className="titulo titulo-2 max-w-[16ch]">
-            Feito também para quem é autista ou neurodivergente
+          <h2 id="inclusivo-titulo" className="titulo titulo-2 max-w-[17ch]">
+            {INCLUSIVO_TITULO}
           </h2>
           <p className="medida mt-6 text-lg">
-            Já saiu de um salão no meio do corte, ou ouviu que a criança era
-            &ldquo;malcriada&rdquo;? Aqui o atendimento é preparado para isso,
-            para crianças, adolescentes e adultos.
+            {INCLUSIVO_TEXTO}
           </p>
 
           <ul role="list" className="mt-12 grid gap-10 md:grid-cols-2">

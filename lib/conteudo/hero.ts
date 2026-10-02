@@ -4,9 +4,9 @@ export type ConteudoHero = {
 };
 
 export const HERO: ConteudoHero = {
-  titulo: "O salão que se encaixa em você",
+  titulo: "Cortar o cabelo não precisa ser uma batalha",
   subtitulo:
-    "Corte, barba, sobrancelha e penteado em Recife, com atendimento preparado para pessoas autistas e neurodivergentes.",
+    "Salão e barbearia em Recife com terapeuta ABA no atendimento. Pessoas autistas, com TDAH e outras neurodivergências, de crianças a adultos, cortam o cabelo no tempo delas.",
 };
 
 export const CTA_WHATSAPP = "Chamar no WhatsApp";

@@ -6,17 +6,19 @@ export type ParagrafoValor = {
 // Conteúdo segue exatamente o critério que o próprio briefing manda
 // explicar: o que pesa no valor, que ele é combinado antes da visita, e
 // que sessão não concluída não vira cobrança dupla.
+export const VALOR_TITULO = "Sem surpresa na hora de pagar";
+
 export const PARAGRAFOS_VALOR: ParagrafoValor[] = [
   {
     texto:
-      "O valor muda de pessoa para pessoa porque o atendimento muda de pessoa para pessoa. O que pesa é o tempo e as adaptações que aquele atendimento precisa, não um diagnóstico ou uma idade.",
+      "Não existe tabela fixa, porque não existe atendimento igual. O que define o valor é o tempo e as adaptações que aquela pessoa precisa, nunca o diagnóstico ou a idade.",
   },
   {
     texto:
-      "Esse valor é combinado com você pelo WhatsApp, antes da visita. Você sabe quanto vai pagar antes de sair de casa.",
+      "O valor é combinado com você pelo WhatsApp, antes da visita. Você sai de casa sabendo quanto vai pagar.",
   },
   {
     texto:
-      "Se o atendimento não for concluído no mesmo dia, isso não vira uma cobrança dobrada na próxima vez.",
+      "E se o corte não terminar no mesmo dia, isso não vira cobrança dobrada na próxima vez.",
   },
 ];
