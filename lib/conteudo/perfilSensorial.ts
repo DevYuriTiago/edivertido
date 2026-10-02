@@ -1,4 +1,4 @@
 export const PERFIL_SENSORIAL_TITULO = "Conte antes, a gente se prepara";
 
 export const INTRO_PERFIL_SENSORIAL =
-  "Quatro etapas curtas sobre quem vai ser atendido: o que incomoda e o que ajuda a acalmar. Só nome e contato são obrigatórios, e a mensagem já vai pronta para o nosso WhatsApp.";
+  "Começa com uma pergunta. Se a pessoa não tiver sensibilidade sensorial, você já segue para o WhatsApp. Se tiver, mais três etapas curtas ajudam a equipe a se preparar antes da chegada.";

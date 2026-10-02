@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { rastrear } from "@/lib/analytics";
-import { linkWhatsAppPerfilSensorial } from "@/lib/whatsapp";
+import { linkWhatsAppDireto, linkWhatsAppPerfilSensorial } from "@/lib/whatsapp";
+import {
+  ERRO_SENSIBILIDADE,
+  type RespostaSensibilidade,
+} from "@/lib/conteudo/formPerfilSensorial";
 import { Etapa1SobreAPessoa } from "./Etapa1SobreAPessoa";
 import { Etapa2Diagnostico } from "./Etapa2Diagnostico";
 import { Etapa3PerfilSensorial } from "./Etapa3PerfilSensorial";
@@ -19,6 +23,7 @@ const NOMES_ETAPAS = [
 
 type EstadoFormulario = {
   nomePessoaAtendida: string;
+  sensibilidade: RespostaSensibilidade | "";
   idadeAproximada: string;
   diagnosticos: string[];
   gatilhos: string[];
@@ -30,6 +35,7 @@ type EstadoFormulario = {
 
 const ESTADO_INICIAL: EstadoFormulario = {
   nomePessoaAtendida: "",
+  sensibilidade: "",
   idadeAproximada: "",
   diagnosticos: [],
   gatilhos: [],
@@ -43,7 +49,9 @@ export function PerfilSensorialForm() {
   const [etapa, setEtapa] = useState(1);
   const [dados, setDados] = useState(ESTADO_INICIAL);
   const [erros, setErros] = useState<ErrosEtapa4>({});
-  const [enviado, setEnviado] = useState(false);
+  const [erroSensibilidade, setErroSensibilidade] = useState<string>();
+  // "direto": sem sensibilidade sensorial, foi direto para o WhatsApp.
+  const [enviado, setEnviado] = useState<"direto" | "perfil" | null>(null);
   const tituloEtapaRef = useRef<HTMLHeadingElement>(null);
   const primeiraRenderizacaoRef = useRef(true);
 
@@ -85,6 +93,28 @@ export function PerfilSensorialForm() {
   function aoEnviarFormulario(evento: React.FormEvent) {
     evento.preventDefault();
 
+    // A pergunta da etapa 1 divide o caminho.
+    if (etapa === 1) {
+      if (!dados.sensibilidade) {
+        setErroSensibilidade(ERRO_SENSIBILIDADE);
+        return;
+      }
+      setErroSensibilidade(undefined);
+      if (dados.sensibilidade === "nao") {
+        rastrear("form_direto_whatsapp");
+        setEnviado("direto");
+        window.open(
+          linkWhatsAppDireto({
+            nomePessoaAtendida: dados.nomePessoaAtendida || undefined,
+            idadeAproximada: dados.idadeAproximada || undefined,
+          }),
+          "_blank",
+          "noopener,noreferrer",
+        );
+        return;
+      }
+    }
+
     if (etapa < TOTAL_ETAPAS) {
       irPara(etapa + 1);
       return;
@@ -98,7 +128,7 @@ export function PerfilSensorialForm() {
 
     setErros({});
     rastrear("form_enviado");
-    setEnviado(true);
+    setEnviado("perfil");
 
     const link = linkWhatsAppPerfilSensorial({
       nomePessoaAtendida: dados.nomePessoaAtendida || undefined,
@@ -115,10 +145,12 @@ export function PerfilSensorialForm() {
   if (enviado) {
     return (
       <div className="flex flex-col gap-3 rounded-2xl bg-ed-surface-2 p-6">
-        <h3>Perfil enviado</h3>
+        <h3 className="titulo titulo-3">
+          {enviado === "perfil" ? "Perfil pronto" : "Tudo certo"}
+        </h3>
         <p>
-          Abrimos o WhatsApp com sua mensagem pronta. Se não abriu
-          sozinho, confira se o navegador bloqueou a janela.
+          Abrimos o WhatsApp com sua mensagem pronta, é só enviar. Se não
+          abriu sozinho, confira se o navegador bloqueou a janela.
         </p>
       </div>
     );
@@ -150,9 +182,15 @@ export function PerfilSensorialForm() {
           <Etapa1SobreAPessoa
             nomePessoaAtendida={dados.nomePessoaAtendida}
             idadeAproximada={dados.idadeAproximada}
+            sensibilidade={dados.sensibilidade}
+            erroSensibilidade={erroSensibilidade}
             aoMudar={(campo, valor) =>
               setDados((atual) => ({ ...atual, [campo]: valor }))
             }
+            aoMudarSensibilidade={(sensibilidade) => {
+              setErroSensibilidade(undefined);
+              setDados((atual) => ({ ...atual, sensibilidade }));
+            }}
           />
         )}
         {etapa === 2 && (
@@ -204,7 +242,10 @@ export function PerfilSensorialForm() {
             type="submit"
             className="botao botao--laranja flex-1"
           >
-            {etapa === TOTAL_ETAPAS ? "Enviar pelo WhatsApp" : "Continuar"}
+            {etapa === TOTAL_ETAPAS ||
+            (etapa === 1 && dados.sensibilidade === "nao")
+              ? "Continuar no WhatsApp"
+              : "Continuar"}
           </button>
         </div>
       </form>

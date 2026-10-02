@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { QuebraCabecaHero } from "@/components/puzzle/QuebraCabecaHero";
 import { HERO, CTA_WHATSAPP } from "@/lib/conteudo/hero";
 
@@ -17,10 +17,10 @@ export function Hero() {
           </h1>
           <p className="medida mt-6 text-lg md:text-xl">{HERO.subtitulo}</p>
           <div className="mt-9">
-            <BotaoWhatsApp origem="hero" className="botao botao--laranja">
+            <BotaoPerfil origem="hero" className="botao botao--laranja">
               <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
               {CTA_WHATSAPP}
-            </BotaoWhatsApp>
+            </BotaoPerfil>
           </div>
         </div>
 

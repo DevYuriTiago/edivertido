@@ -1,5 +1,5 @@
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { PerfilSensorialForm } from "@/components/form/PerfilSensorialForm";
 import { PARAGRAFOS_VALOR, VALOR_TITULO } from "@/lib/conteudo/valor";
 import {
@@ -27,14 +27,17 @@ export function AntesDaVisita() {
             ))}
           </div>
           <div className="mt-10">
-            <BotaoWhatsApp origem="valor" className="botao botao--navy">
+            <BotaoPerfil origem="valor" className="botao botao--navy">
               <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
               {CTA_WHATSAPP}
-            </BotaoWhatsApp>
+            </BotaoPerfil>
           </div>
         </div>
 
-        <div className="rounded-[28px] bg-ed-surface-2 p-6 md:p-10 lg:col-span-7">
+        <div
+          id="perfil-sensorial"
+          className="scroll-mt-24 rounded-[28px] bg-ed-surface-2 p-6 md:p-10 lg:col-span-7"
+        >
           <h2 id="perfil-sensorial-titulo" className="titulo titulo-3">
             {PERFIL_SENSORIAL_TITULO}
           </h2>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { WhatsappLogo, X, CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useSensorial } from "@/lib/sensorial";
 import { rastrear } from "@/lib/analytics";
-import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { Peca } from "@/components/puzzle/Peca";
 import type { Borda } from "@/lib/puzzle";
 import { FOTOS_GALERIA, FRASE_CONTEXTO_GALERIA } from "@/lib/conteudo/galeria";
@@ -91,10 +91,10 @@ export function GaleriaReal() {
         </div>
 
         <div className="mt-14">
-          <BotaoWhatsApp origem="galeria" className="botao botao--laranja">
+          <BotaoPerfil origem="galeria" className="botao botao--laranja">
             <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
             {CTA_WHATSAPP}
-          </BotaoWhatsApp>
+          </BotaoPerfil>
         </div>
       </div>
 

@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Clock, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 import {
   enderecoCompleto,
@@ -49,10 +50,10 @@ export function OndeEstamos() {
           </dl>
 
           <div className="mt-12 flex flex-wrap gap-4">
-            <BotaoWhatsApp origem="final" className="botao botao--laranja">
+            <BotaoPerfil origem="final" className="botao botao--laranja">
               <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
               {CTA_WHATSAPP}
-            </BotaoWhatsApp>
+            </BotaoPerfil>
             <a
               href={linkComoChegar()}
               target="_blank"
@@ -66,7 +67,24 @@ export function OndeEstamos() {
       </div>
 
       <footer className="rodape mx-auto mt-24 flex max-w-[1240px] flex-col gap-3 px-5 pt-10 md:flex-row md:items-center md:justify-between md:px-8">
-        <p className="titulo text-2xl">Edivertido Salão Inclusivo</p>
+        {/* Logo de fundo escuro (wordmark branco) no navy; no modo calmo o
+            rodapé fica branco e entra a versão com wordmark navy. */}
+        <div>
+          <Image
+            src="/marca/logo-edivertido-vetorial-fundo-escuro.svg"
+            alt="Edivertido Salão Inclusivo"
+            width={152}
+            height={116}
+            className="so-ruido h-[88px] w-auto"
+          />
+          <Image
+            src="/marca/logo-edivertido-vetorial-sem-fundo.svg"
+            alt="Edivertido Salão Inclusivo"
+            width={120}
+            height={120}
+            className="so-calmo h-[96px] w-auto"
+          />
+        </div>
         <p className="text-base">
           Rua do Cupim, 53, Graças, Recife.{" "}
           <Link href="/privacidade" className="underline underline-offset-4">

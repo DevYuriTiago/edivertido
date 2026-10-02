@@ -54,6 +54,31 @@ function rotulosSelecionados(
     .map((opcao) => opcao.rotulo);
 }
 
+// Pergunta que divide o caminho, logo depois do nome: sem sensibilidade
+// sensorial, a conversa vai direto para o WhatsApp; com, segue o perfil.
+export const PERGUNTA_SENSIBILIDADE = "Tem alguma sensibilidade sensorial?";
+export const AJUDA_SENSIBILIDADE =
+  "Por exemplo: barulho, toque na cabeça, luz forte, cheiro ou ficar parado por muito tempo.";
+export const OPCOES_SENSIBILIDADE = [
+  { valor: "sim", rotulo: "Sim" },
+  { valor: "nao", rotulo: "Não" },
+] as const;
+export type RespostaSensibilidade = (typeof OPCOES_SENSIBILIDADE)[number]["valor"];
+export const ERRO_SENSIBILIDADE = "Escolha sim ou não para continuar.";
+
+export type DadosMensagemDireta = {
+  nomePessoaAtendida?: string;
+  idadeAproximada?: string;
+};
+
+export function montarMensagemDireta(dados: DadosMensagemDireta): string {
+  if (!dados.nomePessoaAtendida) {
+    return "Oi! Vim pelo site e queria agendar um horário.";
+  }
+  const idade = dados.idadeAproximada ? ` (${dados.idadeAproximada})` : "";
+  return `Oi! Vim pelo site e queria agendar um horário para ${dados.nomePessoaAtendida}${idade}.`;
+}
+
 // Mensagem legível por humano, nunca um despejo de JSON. Cada linha só
 // aparece se aquele campo foi preenchido.
 export function montarMensagemPerfilSensorial(

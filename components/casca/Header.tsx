@@ -1,6 +1,6 @@
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "@/components/marca/Logo";
-import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { InterruptorRuido } from "@/components/casca/InterruptorRuido";
 import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 
@@ -11,13 +11,13 @@ export function Header() {
         <Logo className="h-11 w-auto" />
         <div className="flex items-center gap-3">
           <InterruptorRuido />
-          <BotaoWhatsApp
-            origem="barra-fixa"
+          <BotaoPerfil
+            origem="header"
             className="botao botao--laranja hidden md:inline-flex"
           >
             <WhatsappLogo size={22} weight="bold" aria-hidden="true" />
             {CTA_WHATSAPP}
-          </BotaoWhatsApp>
+          </BotaoPerfil>
         </div>
       </div>
     </header>
