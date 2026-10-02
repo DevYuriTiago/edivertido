@@ -5,6 +5,7 @@ import { PularParaConteudo } from "@/components/casca/PularParaConteudo";
 import { Header } from "@/components/casca/Header";
 import { BarraFixaMobile } from "@/components/casca/BarraFixaMobile";
 import { schemaHairSalon } from "@/lib/schema";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // Precisa rodar antes da primeira pintura para o modo "Tirar ruído" não
@@ -25,7 +26,7 @@ const atkinson = Atkinson_Hyperlegible_Next({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const siteUrl = SITE_URL;
 
 // Título literal de CLAUDE.md §11, com um ajuste: o original usa "—"
 // antes de "Edivertido", e a regra de copy do projeto proíbe travessão
@@ -37,13 +38,15 @@ const DESCRICAO_SITE =
   "Salão e barbearia em Recife (Graças), com terapeuta ABA no atendimento a criança autista, pessoa com TEA, TDAH e outras condições. Também atende adolescentes e adultos.";
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  metadataBase: new URL(siteUrl),
   title: TITULO_SITE,
   description: DESCRICAO_SITE,
   alternates: {
     canonical: "/",
   },
   openGraph: {
+    url: "/",
+    siteName: "Edivertido Salão Inclusivo",
     title: TITULO_SITE,
     description: DESCRICAO_SITE,
     locale: "pt_BR",
