@@ -103,3 +103,10 @@ export function faixasFormatadas(
     return `${rotuloDias}: ${rotuloHorario}`;
   });
 }
+
+// Crédito da agência no rodapé (pedido da Prompts360, 2026-10-02).
+export const CREDITO_AGENCIA = {
+  prefixo: "Site desenvolvido pela",
+  nome: "Prompts360",
+  url: "https://prompts360.com.br",
+};

@@ -4,6 +4,7 @@ import { MapPin, Clock, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 import {
+  CREDITO_AGENCIA,
   enderecoCompleto,
   faixasFormatadas,
   linkComoChegar,
@@ -85,12 +86,26 @@ export function OndeEstamos() {
             className="so-calmo h-[96px] w-auto"
           />
         </div>
-        <p className="text-base">
-          Rua do Cupim, 53, Graças, Recife.{" "}
-          <Link href="/privacidade" className="underline underline-offset-4">
-            Política de privacidade
-          </Link>
-        </p>
+        <div className="flex flex-col gap-2 md:items-end md:text-right">
+          <p className="text-base">
+            Rua do Cupim, 53, Graças, Recife.{" "}
+            <Link href="/privacidade" className="underline underline-offset-4">
+              Política de privacidade
+            </Link>
+          </p>
+          <p className="text-base">
+            {CREDITO_AGENCIA.prefixo}{" "}
+            <a
+              href={CREDITO_AGENCIA.url}
+              target="_blank"
+              rel="noopener"
+              className="font-bold underline underline-offset-4"
+            >
+              {CREDITO_AGENCIA.nome}
+              <span className="sr-only"> (abre em nova aba)</span>
+            </a>
+          </p>
+        </div>
       </footer>
     </section>
   );
