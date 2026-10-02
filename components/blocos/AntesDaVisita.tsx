@@ -1,6 +1,7 @@
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { BotaoPerfil } from "@/components/ui/BotaoPerfil";
 import { PerfilSensorialForm } from "@/components/form/PerfilSensorialForm";
+import { AvisoPerfil } from "@/components/form/AvisoPerfil";
 import { PARAGRAFOS_VALOR, VALOR_TITULO } from "@/lib/conteudo/valor";
 import {
   INTRO_PERFIL_SENSORIAL,
@@ -36,8 +37,9 @@ export function AntesDaVisita() {
 
         <div
           id="perfil-sensorial"
-          className="scroll-mt-24 rounded-[28px] bg-ed-surface-2 p-6 md:p-10 lg:col-span-7"
+          className="painel-perfil scroll-mt-24 rounded-[28px] bg-ed-surface-2 p-6 md:p-10 lg:col-span-7"
         >
+          <AvisoPerfil />
           <h2 id="perfil-sensorial-titulo" className="titulo titulo-3">
             {PERFIL_SENSORIAL_TITULO}
           </h2>

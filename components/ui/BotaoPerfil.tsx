@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { rastrear } from "@/lib/analytics";
 import type { OrigemCta } from "@/lib/whatsapp";
+import { EVENTO_IR_PARA_PERFIL } from "@/components/form/AvisoPerfil";
 
 type BotaoPerfilProps = {
   origem: OrigemCta;
@@ -19,7 +20,10 @@ export function BotaoPerfil({ origem, className, children }: BotaoPerfilProps) {
     <Link
       href="/#perfil-sensorial"
       className={className}
-      onClick={() => rastrear("cta_click", { origem })}
+      onClick={() => {
+        rastrear("cta_click", { origem });
+        window.dispatchEvent(new Event(EVENTO_IR_PARA_PERFIL));
+      }}
     >
       {children}
     </Link>
