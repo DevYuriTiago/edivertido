@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { rastrear } from "@/lib/analytics";
 import { linkWhatsAppDireto, linkWhatsAppPerfilSensorial } from "@/lib/whatsapp";
+import { DIGITOS_CELULAR, somenteDigitos } from "@/lib/telefone";
 import {
   ERRO_SENSIBILIDADE,
   type RespostaSensibilidade,
@@ -78,10 +79,9 @@ export function PerfilSensorialForm() {
     if (!dados.nomeContato.trim()) {
       novosErros.nomeContato = "Preencha seu nome antes de continuar.";
     }
-    const digitos = dados.whatsappContato.replace(/\D/g, "");
-    if (digitos.length < 8) {
+    if (somenteDigitos(dados.whatsappContato).length !== DIGITOS_CELULAR) {
       novosErros.whatsappContato =
-        "Preencha um número de WhatsApp válido antes de continuar.";
+        "Digite o celular com DDD, no formato (81) 9.0000-0000.";
     }
     if (!dados.aceitouPrivacidade) {
       novosErros.privacidade =

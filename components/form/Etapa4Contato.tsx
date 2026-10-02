@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { aplicarMascaraAoDigitar } from "@/lib/telefone";
 
 export type ErrosEtapa4 = {
   nomeContato?: string;
@@ -57,9 +58,19 @@ export function Etapa4Contato({
         <input
           id="whatsapp-contato"
           type="tel"
+          inputMode="numeric"
+          autoComplete="tel-national"
+          placeholder="(81) 9.0000-0000"
           value={whatsappContato}
           onChange={(evento) =>
-            aoMudarTexto("whatsappContato", evento.target.value)
+            aoMudarTexto(
+              "whatsappContato",
+              aplicarMascaraAoDigitar(
+                whatsappContato,
+                evento.target.value,
+                (evento.nativeEvent as InputEvent).inputType?.startsWith("delete") ?? false,
+              ),
+            )
           }
           aria-invalid={erros.whatsappContato ? true : undefined}
           aria-describedby={
