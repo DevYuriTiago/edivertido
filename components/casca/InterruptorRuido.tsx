@@ -19,7 +19,7 @@ export function InterruptorRuido() {
       <span className="interruptor-trilho relative inline-block h-7 w-12 shrink-0 rounded-full">
         <span className="interruptor-bolinha absolute left-1 top-1 h-5 w-5 rounded-full" />
       </span>
-      <span className="font-[family-name:var(--font-barlow)] text-base font-bold uppercase leading-none tracking-wide">
+      <span className="font-[family-name:var(--font-titulo)] text-base font-extrabold leading-none">
         Tirar ruído
       </span>
     </button>

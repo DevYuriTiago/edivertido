@@ -30,7 +30,7 @@
   --color-ed-ink-soft: var(--navy-80);
   --color-ed-line: var(--navy-15);
 
-  --font-display: var(--font-barlow);
+  --font-display: var(--font-titulo);
   --font-body: var(--font-atkinson);
 }
 
@@ -76,27 +76,27 @@ p {
 /* Classes de componente em camada própria: utilitários do Tailwind
    (hidden, leading-*, w-full) vencem sem precisar de !important. */
 @layer components {
-  /* ---------- Tipografia de display: o mesmo grotesco condensado do
-     wordmark EDIVERTIDO ---------- */
+  /* ---------- Tipografia de display: Grandstander, letra com balanço
+     de feita à mão. Larga e já expressiva, então vai em caixa normal e
+     em tamanhos menores que um grotesco condensado pediria. ---------- */
   .titulo {
-    font-family: var(--font-barlow), sans-serif;
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 0.92;
-    letter-spacing: -0.005em;
+    font-family: var(--font-titulo), sans-serif;
+    font-weight: 900;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
   }
 
   .titulo-1 {
-    font-size: clamp(3rem, 1.6rem + 6vw, 6rem);
+    font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.9rem);
   }
 
   .titulo-2 {
-    font-size: clamp(2.4rem, 1.5rem + 3.6vw, 4.5rem);
+    font-size: clamp(2rem, 1.35rem + 2.6vw, 3.6rem);
   }
 
   .titulo-3 {
-    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
-    line-height: 1;
+    font-size: clamp(1.3rem, 1.12rem + 0.7vw, 1.7rem);
+    line-height: 1.1;
   }
 
   .medida {
@@ -173,11 +173,9 @@ p {
     min-height: 3.25rem;
     padding-inline: 1.75rem;
     border-radius: 999px;
-    font-family: var(--font-barlow), sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+    font-family: var(--font-titulo), sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
     white-space: nowrap;
     transition: transform 160ms var(--ease-out), background-color 160ms ease;
   }
@@ -312,11 +310,11 @@ p {
 }
 
 [data-calmo] .titulo-1 {
-  font-size: clamp(2.4rem, 1.6rem + 3vw, 3.75rem);
+  font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.2rem);
 }
 
 [data-calmo] .titulo-2 {
-  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem);
 }
 
 [data-calmo] .foto-calma {

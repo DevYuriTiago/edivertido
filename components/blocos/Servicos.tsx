@@ -75,7 +75,7 @@ export function Servicos() {
     <section aria-labelledby="servicos-titulo" className="secao secao--laranja">
       <span className="costura" aria-hidden="true" />
       <div className="mx-auto max-w-[1100px] px-5 md:px-8">
-        <h2 id="servicos-titulo" className="titulo titulo-2 max-w-[14ch]">
+        <h2 id="servicos-titulo" className="titulo titulo-2 max-w-[18ch]">
           {SERVICOS_TITULO}
         </h2>
         <div className="mt-14 px-[6%] md:hidden">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Atkinson_Hyperlegible_Next } from "next/font/google";
+import { Grandstander, Atkinson_Hyperlegible_Next } from "next/font/google";
 import { SensorialProvider } from "@/lib/sensorial";
 import { PularParaConteudo } from "@/components/casca/PularParaConteudo";
 import { Header } from "@/components/casca/Header";
@@ -12,10 +12,10 @@ import "./globals.css";
 // duplicada de propósito: roda como script cru, fora da árvore React.
 const SCRIPT_SEM_RUIDO = `(function(){try{if(localStorage.getItem("ed-sem-ruido")==="1")document.documentElement.setAttribute("data-calmo","true")}catch(e){}})();`;
 
-const barlow = Barlow_Condensed({
+const grandstander = Grandstander({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-barlow",
+  weight: ["700", "800", "900"],
+  variable: "--font-titulo",
   display: "swap",
 });
 
@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${barlow.variable} ${atkinson.variable}`}
+      className={`${grandstander.variable} ${atkinson.variable}`}
       // O script abaixo escreve data-calmo neste elemento antes da
       // hidratação, de propósito (evita flash de estado errado). React vai
       // ver um mismatch aqui; é esperado, mesmo padrão do next-themes.

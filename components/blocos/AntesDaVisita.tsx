@@ -16,7 +16,7 @@ export function AntesDaVisita() {
       <span className="costura" aria-hidden="true" />
       <div className="mx-auto grid max-w-[1240px] gap-16 px-5 md:px-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
-          <h2 id="valor-titulo" className="titulo titulo-2 max-w-[12ch]">
+          <h2 id="valor-titulo" className="titulo titulo-2 max-w-[16ch]">
             {VALOR_TITULO}
           </h2>
           <div className="mt-8 flex flex-col gap-5">

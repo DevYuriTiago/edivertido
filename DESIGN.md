@@ -11,19 +11,19 @@ colors:
   navy-06: "#F1F1F5"
 typography:
   display:
-    fontFamily: "Barlow Condensed, sans-serif"
+    fontFamily: "Grandstander, sans-serif"
     fontSize: "clamp(3rem, 1.6rem + 6vw, 6rem)"
     fontWeight: 800
     lineHeight: 0.92
     letterSpacing: "-0.005em"
   headline:
-    fontFamily: "Barlow Condensed, sans-serif"
+    fontFamily: "Grandstander, sans-serif"
     fontSize: "clamp(2.4rem, 1.5rem + 3.6vw, 4.5rem)"
     fontWeight: 800
     lineHeight: 0.92
     letterSpacing: "-0.005em"
   title:
-    fontFamily: "Barlow Condensed, sans-serif"
+    fontFamily: "Grandstander, sans-serif"
     fontSize: "clamp(1.5rem, 1.2rem + 1vw, 2rem)"
     fontWeight: 800
     lineHeight: 1
@@ -34,7 +34,7 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Barlow Condensed, sans-serif"
+    fontFamily: "Grandstander, sans-serif"
     fontSize: "1.15rem"
     fontWeight: 700
     lineHeight: 1
@@ -110,7 +110,7 @@ components:
 
 A página é um quebra-cabeça montado. Cada seção é um campo plano e saturado de uma única cor da marca (navy, laranja, verde ou branco), e a seção de baixo sobe sobre a de cima por uma costura de encaixes. Dentro das seções, fotos reais e blocos de texto são recortados em peças de verdade, geradas por código, com encaixes que se fecham sem fresta nas vizinhas. A linguagem de quebra-cabeça foi fixada pela cliente; o sistema existe para que ela seja executada com rigor, nunca como enfeite solto.
 
-O tipo de display é um grotesco condensado ExtraBold em caixa alta, a mesma voz do wordmark EDIVERTIDO; o corpo é Atkinson Hyperlegible Next, escolhida pela legibilidade em baixa visão. A densidade é baixa: poucas coisas grandes por tela, respiro generoso entre seções.
+O tipo de display é a Grandstander Black, uma letra larga com balanço de feita à mão, em caixa normal: divertida sem ser infantil, combinando com as curvas da logo. O corpo é Atkinson Hyperlegible Next, escolhida pela legibilidade em baixa visão. A densidade é baixa: poucas coisas grandes por tela, respiro generoso entre seções.
 
 O sistema tem dois estados, não um. O interruptor "Tirar ruído" transforma a página inteira em branco, plano e parado: campos de cor somem, peças viram retângulos de canto suave, sombras e movimento desligam, fotos ficam menores. Todo componente novo precisa ter as duas aparências.
 
@@ -118,7 +118,7 @@ O sistema tem dois estados, não um. O interruptor "Tirar ruído" transforma a p
 - Quatro cores de marca, nenhuma outra; tons intermediários são só misturas do próprio navy com branco.
 - Uma cor comprometida por seção, costuras de encaixe entre seções.
 - Peças de quebra-cabeça procedurais, com área de texto segura e linha de corte nas fotos.
-- Display condensado em caixa alta, corpo hiperlegível.
+- Display com balanço de letra à mão, em caixa normal; corpo hiperlegível.
 - Botões em pílula; a ação é sempre "Chamar no WhatsApp".
 - Modo "Tirar ruído": branco, plano, parado.
 
@@ -150,21 +150,21 @@ Paleta de marca saturada e plana, usada em campos inteiros, com o navy como base
 
 ## Typography
 
-**Display Font:** Barlow Condensed (fallback sans-serif), pesos 600/700/800
+**Display Font:** Grandstander (fallback sans-serif), pesos 700/800/900, escolhida pela cliente em 2026-10-02
 **Body Font:** Atkinson Hyperlegible Next (fallback system-ui, sans-serif)
 
-**Character:** Um condensado pesado e gritado em caixa alta, que conversa com o wordmark, apoiado por um corpo calmo e projetado para diferenciar caracteres. O display faz barulho; o corpo nunca.
+**Character:** Uma letra larga e animada, com balanço de feita à mão, apoiada por um corpo calmo e projetado para diferenciar caracteres. O display tem movimento; o corpo nunca.
 
 ### Hierarchy
-- **Display** (800, clamp(3rem → 6rem), 0.92, caixa alta): H1 do herói e título de fechamento. No modo calmo cai para clamp(2.4rem → 3.75rem).
-- **Headline** (800, clamp(2.4rem → 4.5rem), 0.92, caixa alta): H2 de seção, com largura limitada entre 12ch e 16ch. No modo calmo, clamp(2rem → 3rem).
-- **Headline frase** (800, sem caixa alta, line-height 1.02): quando o título é uma frase completa (galeria, faixa de números), a caixa alta sai.
-- **Title** (800, clamp(1.5rem → 2rem), 1, caixa alta): H3, rótulos de prova, perguntas de objeção.
+- **Display** (900, clamp(2.5rem → 4.9rem), 1.04): H1 do herói e título de fechamento. No modo calmo cai para clamp(2.1rem → 3.2rem).
+- **Headline** (900, clamp(2rem → 3.6rem), 1.04): H2 de seção, com largura limitada entre 16ch e 24ch. No modo calmo, clamp(1.8rem → 2.6rem).
+- **Headline frase** (900, line-height 1.02): quando o título é uma frase completa (galeria, faixa de números).
+- **Title** (900, clamp(1.3rem → 1.7rem), 1.1): H3, rótulos de prova, perguntas de objeção.
 - **Body** (400, 17px mobile / 18px desktop, 1.6): texto corrido, sempre alinhado à esquerda, medida máxima de 62ch.
-- **Label** (Barlow 700, 1.15rem, 0.01em, caixa alta): botões e o rótulo do interruptor. Nunca mais de três palavras.
+- **Label** (Grandstander 800, 1.1rem): botões e o rótulo do interruptor. Nunca mais de três palavras.
 
 ### Named Rules
-**The Shout And Calm Rule.** Caixa alta só no display condensado e em rótulos de até três palavras; frase inteira como título perde a caixa alta. O corpo nunca é caixa alta, nunca justificado.
+**The Shout And Calm Rule.** O display tem voz própria (letra à mão, larga) e nunca vai em caixa alta; o corpo é sempre Atkinson, nunca em caixa alta, nunca justificado.
 
 ## Layout
 
@@ -209,7 +209,7 @@ Pílulas firmes, de toque grande, que reagem com peso físico.
 - **Modo calmo:** laranja e branco viram navy com texto branco.
 
 ### Interruptor "Tirar ruído"
-Um switch real (`role="switch"`), no header, com alvo mínimo de 48px. Trilho de 48×28px em navy 15 com bolinha navy de 20px; ligado, o trilho fica navy e a bolinha branca desliza 20px (220ms). Rótulo em Barlow 700 caixa alta. O estado vive em `data-calmo` no `<html>`, escrito antes da primeira pintura para não piscar.
+Um switch real (`role="switch"`), no header, com alvo mínimo de 48px. Trilho de 48×28px em navy 15 com bolinha navy de 20px; ligado, o trilho fica navy e a bolinha branca desliza 20px (220ms). Rótulo em Grandstander 800. O estado vive em `data-calmo` no `<html>`, escrito antes da primeira pintura para não piscar.
 
 ### Peças de quebra-cabeça (assinatura)
 - **Peça de cor:** campo navy (texto branco), branco ou verde (texto navy), com ícone Phosphor bold de 36px e rótulo em Title; cores distribuídas na grade para que vizinhas não repitam.

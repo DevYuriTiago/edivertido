@@ -13,7 +13,7 @@
       "navy-06": { "role": "neutral", "displayName": "Navy 06", "canonical": "color-mix(in srgb, #131351 6%, #ffffff)", "tonalRamp": ["#131351", "#424274", "#71719a", "#a1a1bd", "#c4c4d6", "#dcdce5", "#f1f1f5", "#ffffff"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "H1 do herói e título de fechamento. Barlow Condensed 800 em caixa alta; no modo calmo cai para clamp(2.4rem, 1.6rem + 3vw, 3.75rem)." },
+      "display": { "displayName": "Display", "purpose": "H1 do herói e título de fechamento. Grandstander 900 em caixa normal; no modo calmo cai para clamp(2.4rem, 1.6rem + 3vw, 3.75rem)." },
       "headline": { "displayName": "Headline", "purpose": "H2 de seção. Frase completa perde a caixa alta e usa line-height 1.02. No modo calmo, clamp(2rem, 1.5rem + 2vw, 3rem)." },
       "title": { "displayName": "Title", "purpose": "H3, rótulos de prova, perguntas de objeção, rótulos de peça." },
       "body": { "displayName": "Body", "purpose": "Texto corrido, 17px mobile e 18px a partir de 768px, alinhado à esquerda, medida de 62ch." },
@@ -40,7 +40,7 @@
       "refersTo": "button-primary",
       "description": "CTA único da página, pílula laranja com texto navy e rótulo Chamar no WhatsApp.",
       "html": "<a class=\"ds-botao ds-botao--laranja\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 256 256\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"20\" aria-hidden=\"true\"><path d=\"M45.4 177A95.9 95.9 0 1 1 79 210.6L45.8 220a8 8 0 0 1-9.8-9.8Z\"/></svg>Chamar no WhatsApp</a>",
-      "css": ".ds-botao { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; text-transform: uppercase; white-space: nowrap; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; } .ds-botao--laranja { background: #fca700; color: #131351; } .ds-botao:hover { transform: translateY(-2px); } .ds-botao:active { transform: scale(0.97); } .ds-botao:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
+      "css": ".ds-botao { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; font-family: 'Grandstander', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; white-space: nowrap; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; } .ds-botao--laranja { background: #fca700; color: #131351; } .ds-botao:hover { transform: translateY(-2px); } .ds-botao:active { transform: scale(0.97); } .ds-botao:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
     },
     {
       "name": "Botão navy",
@@ -48,7 +48,7 @@
       "refersTo": "button-navy",
       "description": "CTA dentro de seção branca; também o aspecto do primário no modo calmo.",
       "html": "<a class=\"ds-botao-navy\" href=\"#\">Chamar no WhatsApp</a>",
-      "css": ".ds-botao-navy { display: inline-flex; align-items: center; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; background: #131351; color: #ffffff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; text-transform: uppercase; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-botao-navy:hover { transform: translateY(-2px); } .ds-botao-navy:active { transform: scale(0.97); } .ds-botao-navy:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
+      "css": ".ds-botao-navy { display: inline-flex; align-items: center; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; background: #131351; color: #ffffff; font-family: 'Grandstander', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-botao-navy:hover { transform: translateY(-2px); } .ds-botao-navy:active { transform: scale(0.97); } .ds-botao-navy:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
     },
     {
       "name": "Botão contorno",
@@ -56,7 +56,7 @@
       "refersTo": "button-contorno",
       "description": "Ação secundária (Como chegar, Voltar), anel interno de 2px em currentColor.",
       "html": "<a class=\"ds-botao-contorno\" href=\"#\">Como chegar</a>",
-      "css": ".ds-botao-contorno { display: inline-flex; align-items: center; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; background: transparent; color: #131351; box-shadow: inset 0 0 0 2px currentColor; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; text-transform: uppercase; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-botao-contorno:hover { transform: translateY(-2px); } .ds-botao-contorno:active { transform: scale(0.97); } .ds-botao-contorno:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
+      "css": ".ds-botao-contorno { display: inline-flex; align-items: center; min-height: 3.25rem; padding-inline: 1.75rem; border-radius: 999px; background: transparent; color: #131351; box-shadow: inset 0 0 0 2px currentColor; font-family: 'Grandstander', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.01em; text-decoration: none; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-botao-contorno:hover { transform: translateY(-2px); } .ds-botao-contorno:active { transform: scale(0.97); } .ds-botao-contorno:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
     },
     {
       "name": "Campo de texto",
@@ -72,7 +72,7 @@
       "refersTo": "interruptor",
       "description": "Switch real que liga o modo branco, plano e parado da página inteira.",
       "html": "<button class=\"ds-interruptor\" role=\"switch\" aria-checked=\"false\" onclick=\"this.setAttribute('aria-checked', this.getAttribute('aria-checked')==='true'?'false':'true')\"><span class=\"ds-trilho\"><span class=\"ds-bolinha\"></span></span>Tirar ruído</button>",
-      "css": ".ds-interruptor { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding-inline: 0.5rem; border: 0; border-radius: 999px; background: transparent; color: #131351; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.025em; cursor: pointer; } .ds-trilho { position: relative; display: inline-block; width: 3rem; height: 1.75rem; border-radius: 999px; background: #dcdce5; transition: background-color 160ms ease; } .ds-bolinha { position: absolute; left: 0.25rem; top: 0.25rem; width: 1.25rem; height: 1.25rem; border-radius: 999px; background: #131351; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; } .ds-interruptor[aria-checked='true'] .ds-trilho { background: #131351; } .ds-interruptor[aria-checked='true'] .ds-bolinha { background: #ffffff; transform: translateX(20px); } .ds-interruptor:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
+      "css": ".ds-interruptor { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding-inline: 0.5rem; border: 0; border-radius: 999px; background: transparent; color: #131351; font-family: 'Grandstander', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.025em; cursor: pointer; } .ds-trilho { position: relative; display: inline-block; width: 3rem; height: 1.75rem; border-radius: 999px; background: #dcdce5; transition: background-color 160ms ease; } .ds-bolinha { position: absolute; left: 0.25rem; top: 0.25rem; width: 1.25rem; height: 1.25rem; border-radius: 999px; background: #131351; transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), background-color 160ms ease; } .ds-interruptor[aria-checked='true'] .ds-trilho { background: #131351; } .ds-interruptor[aria-checked='true'] .ds-bolinha { background: #ffffff; transform: translateX(20px); } .ds-interruptor:focus-visible { outline: 3px solid #131351; outline-offset: 3px; }"
     },
     {
       "name": "Quebra-cabeça de serviços",
@@ -80,7 +80,7 @@
       "refersTo": "peca-navy",
       "description": "Duas peças vizinhas com bordas opostas (encaixe 0.24 do lado), texto no miolo seguro, sombra só no grupo.",
       "html": "<div class=\"ds-quebra\"><div class=\"ds-peca ds-peca--navy\" style=\"clip-path: path('M29 29 L160 29 L160 69 C160 80 172 82 177 76 C184 68 194 75 194 86 C194 97 184 104 177 96 C172 90 160 92 160 103 L160 160 L29 160 Z')\"><span>Corte</span></div><div class=\"ds-peca ds-peca--verde\" style=\"margin-left:-29px;clip-path: path('M0 29 L131 29 L131 160 L0 160 L0 103 C0 92 -12 90 -17 96 C-24 104 -34 97 -34 86 C-34 75 -24 68 -17 76 C-12 82 0 80 0 69 Z')\"><span>Barba</span></div></div>",
-      "css": ".ds-quebra { display: flex; filter: drop-shadow(0 10px 24px rgba(19,19,81,0.28)); padding: 8px; } .ds-peca { width: 189px; height: 189px; display: flex; align-items: center; justify-content: center; padding: 29px; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; line-height: 1; } .ds-peca--navy { background: #131351; color: #ffffff; } .ds-peca--verde { background: #77b900; color: #131351; }"
+      "css": ".ds-quebra { display: flex; filter: drop-shadow(0 10px 24px rgba(19,19,81,0.28)); padding: 8px; } .ds-peca { width: 189px; height: 189px; display: flex; align-items: center; justify-content: center; padding: 29px; font-family: 'Grandstander', sans-serif; font-weight: 800; font-size: 1.4rem; line-height: 1; } .ds-peca--navy { background: #131351; color: #ffffff; } .ds-peca--verde { background: #77b900; color: #131351; }"
     },
     {
       "name": "Painel do formulário",
@@ -88,7 +88,7 @@
       "refersTo": "painel-formulario",
       "description": "Contêiner do perfil sensorial, navy 06, raio 28px, sem sombra nem borda.",
       "html": "<div class=\"ds-painel\"><h3>Perfil sensorial</h3><p>Preencher este formulário ajuda a gente a se preparar antes da pessoa chegar.</p></div>",
-      "css": ".ds-painel { background: #f1f1f5; color: #131351; border-radius: 28px; padding: 40px; max-width: 36rem; font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif; } .ds-painel h3 { margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; line-height: 1; text-transform: uppercase; } .ds-painel p { margin: 0.75rem 0 0; color: #424274; font-size: 1.0625rem; line-height: 1.6; }"
+      "css": ".ds-painel { background: #f1f1f5; color: #131351; border-radius: 28px; padding: 40px; max-width: 36rem; font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif; } .ds-painel h3 { margin: 0; font-family: 'Grandstander', sans-serif; font-weight: 800; font-size: 2rem; line-height: 1; } .ds-painel p { margin: 0.75rem 0 0; color: #424274; font-size: 1.0625rem; line-height: 1.6; }"
     }
   ],
   "narrative": {

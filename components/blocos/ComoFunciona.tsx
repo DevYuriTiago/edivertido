@@ -90,7 +90,7 @@ export function ComoFunciona() {
         </p>
 
         <div className="so-ruido mt-14 px-[6%] md:hidden">
-          <Corrente colunas={1} largura={4} altura={3} prefixo="etapa-m" />
+          <Corrente colunas={1} largura={1} altura={1} prefixo="etapa-m" />
         </div>
         <div className="so-ruido mx-auto mt-16 hidden max-w-[980px] px-[4%] md:block">
           <Corrente colunas={2} largura={3} altura={2} prefixo="etapa-d" />

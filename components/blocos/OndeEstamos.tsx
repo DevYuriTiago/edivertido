@@ -18,7 +18,7 @@ export function OndeEstamos() {
     <section aria-labelledby="onde-titulo" className="secao secao--navy">
       <span className="costura" aria-hidden="true" />
       <div className="mx-auto grid max-w-[1240px] gap-14 px-5 md:px-8 lg:grid-cols-12 lg:gap-12">
-        <h2 id="onde-titulo" className="titulo titulo-1 max-w-[10ch] lg:col-span-6">
+        <h2 id="onde-titulo" className="titulo titulo-1 max-w-[12ch] lg:col-span-6">
           Vem conhecer o salão
         </h2>
 
