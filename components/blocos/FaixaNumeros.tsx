@@ -1,54 +1,33 @@
-import { Revelar } from "@/components/ui/Revelar";
+import { Star } from "@phosphor-icons/react/dist/ssr";
 import { NUMEROS, faixaNumerosCompleta } from "@/lib/conteudo/numeros";
 
-// Bloco 2 — condicional. CLAUDE.md §6: só entra com nota+avaliações do
-// Google, tempo de operação e número de atendimentos comprovados ao mesmo
-// tempo; sem os 4, o bloco inteiro sai. Confirmados em 2026-09-04.
+// Prova em uma frase corrida, não no molde "número grande + legenda".
+// Os números vêm da cliente e do Google Business Profile.
 export function FaixaNumeros() {
   if (!faixaNumerosCompleta(NUMEROS)) return null;
 
-  const atendimentosFormatado = NUMEROS.atendimentosRealizados.toLocaleString(
-    "pt-BR",
-  );
-
-  const itens = [
-    {
-      valor: `${NUMEROS.notaGoogle.toLocaleString("pt-BR")} ★`,
-      rotulo: `nota no Google, ${NUMEROS.avaliacoesGoogle} avaliações`,
-    },
-    {
-      valor: `${NUMEROS.anosDeOperacao}`,
-      rotulo:
-        NUMEROS.anosDeOperacao === 1 ? "ano de funcionamento" : "anos de funcionamento",
-    },
-    {
-      // "+" quando o número é um piso informado pela cliente, não uma
-      // contagem exata (ver o comentário em lib/conteudo/numeros.ts).
-      valor: NUMEROS.atendimentosAproximado
-        ? `${atendimentosFormatado}+`
-        : atendimentosFormatado,
-      rotulo: "atendimentos realizados",
-    },
-  ];
+  const nota = NUMEROS.notaGoogle.toLocaleString("pt-BR", {
+    minimumFractionDigits: 1,
+  });
+  const atendimentos = NUMEROS.atendimentosRealizados.toLocaleString("pt-BR");
 
   return (
-    <section
-      aria-labelledby="numeros-titulo"
-      className="mx-auto max-w-5xl px-6 py-12"
-    >
-      <h2 id="numeros-titulo" className="sr-only">
-        Números que comprovam
+    <section aria-labelledby="prova-titulo" className="secao secao--branco py-16 md:py-20">
+      <span className="costura" aria-hidden="true" />
+      <h2 id="prova-titulo" className="sr-only">
+        Quem já passou por aqui
       </h2>
-      <Revelar className="grid gap-8 sm:grid-cols-3">
-        <>
-          {itens.map((item) => (
-            <div key={item.rotulo} className="flex flex-col gap-1 text-center">
-              <p className="text-h2">{item.valor}</p>
-              <p className="text-sm text-ed-ink-soft">{item.rotulo}</p>
-            </div>
-          ))}
-        </>
-      </Revelar>
+      <p className="titulo titulo--frase mx-auto max-w-[1100px] px-5 text-center text-[clamp(1.9rem,1.2rem+2.6vw,3.4rem)] leading-[1.05] md:px-8">
+        <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          Nota {nota}
+          <Star weight="fill" className="text-ed-orange" aria-hidden="true" />
+        </span>{" "}
+        no Google em {NUMEROS.avaliacoesGoogle} avaliações.{" "}
+        <span className="whitespace-nowrap">{NUMEROS.anosDeOperacao} anos</span>{" "}
+        cortando cabelo em Recife.{" "}
+        {NUMEROS.atendimentosAproximado ? "Mais de " : ""}
+        <span className="whitespace-nowrap">{atendimentos} atendimentos.</span>
+      </p>
     </section>
   );
 }

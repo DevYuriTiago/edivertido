@@ -18,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Scripts de terceiros das skills instaladas, não são código do site.
+      ".claude/**",
     ],
   },
 ];

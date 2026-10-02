@@ -3,15 +3,40 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { WhatsappLogo, X, CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useSensorial } from "@/lib/sensorial";
 import { rastrear } from "@/lib/analytics";
-import { Revelar } from "@/components/ui/Revelar";
 import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { Peca } from "@/components/puzzle/Peca";
+import type { Borda } from "@/lib/puzzle";
 import { FOTOS_GALERIA, FRASE_CONTEXTO_GALERIA } from "@/lib/conteudo/galeria";
+import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 
-// Bloco 5 — editorial, não tátil (CLAUDE.md §6): a honestidade da imagem
-// é o argumento, não a interação. Por isso a grade não tem reveal
-// escalonado por foto, só a frase de contexto acima dela.
+// Ordem do mosaico: o corte difícil ao lado do resultado feliz na primeira
+// linha, o processo e o espaço embaixo. Índices de FOTOS_GALERIA.
+const ORDEM = ["/marca/02.jpeg", "/marca/05.jpeg", "/marca/03.jpeg", "/marca/04.jpeg", "/marca/01.jpeg"].map(
+  (arquivo) => FOTOS_GALERIA.findIndex((foto) => foto.arquivo === arquivo),
+);
+
+// Linhas do mosaico: cada item é [posição em ORDEM, largura em células].
+const LINHAS_DESKTOP: [number, number][][] = [
+  [[0, 2], [1, 1]],
+  [[2, 1], [3, 1], [4, 1]],
+];
+const LINHAS_MOBILE: [number, number][][] = [
+  [[0, 2]],
+  [[1, 1], [2, 1]],
+  [[3, 1], [4, 1]],
+];
+
+function bordasNaLinha(indice: number, total: number) {
+  const direita: Borda =
+    indice === total - 1 ? "lisa" : indice % 2 === 0 ? "fora" : "dentro";
+  const esquerda: Borda =
+    indice === 0 ? "lisa" : (indice - 1) % 2 === 0 ? "dentro" : "fora";
+  return { topo: "lisa" as Borda, direita, base: "lisa" as Borda, esquerda };
+}
+
 export function GaleriaReal() {
   const [indiceAberto, setIndiceAberto] = useState<number | null>(null);
   const { movimento } = useSensorial();
@@ -44,7 +69,6 @@ export function GaleriaReal() {
 
   useEffect(() => {
     if (indiceAberto === null) return;
-
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
@@ -52,43 +76,27 @@ export function GaleriaReal() {
   }, [indiceAberto]);
 
   return (
-    <section
-      aria-labelledby="galeria-titulo"
-      className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-16 md:py-20"
-    >
-      <Revelar className="flex flex-col gap-3">
-        <h2 id="galeria-titulo" className="sr-only">
-          Galeria real
+    <section aria-labelledby="galeria-titulo" className="secao secao--navy">
+      <span className="costura" aria-hidden="true" />
+      <div className="mx-auto max-w-[1100px] px-5 md:px-8">
+        <h2 id="galeria-titulo" className="titulo titulo--frase titulo-2 max-w-[24ch]">
+          {FRASE_CONTEXTO_GALERIA}
         </h2>
-        <p className="text-h3 max-w-xl">{FRASE_CONTEXTO_GALERIA}</p>
-      </Revelar>
 
-      <ul role="list" className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {FOTOS_GALERIA.map((foto, indice) => (
-          <li key={foto.arquivo}>
-            <button
-              type="button"
-              onClick={(evento) => abrir(indice, evento.currentTarget)}
-              className="relative block aspect-square w-full overflow-hidden rounded-2xl"
-            >
-              <Image
-                src={foto.arquivo}
-                alt={foto.alt}
-                fill
-                sizes="(min-width: 640px) 33vw, 50vw"
-                className="object-cover"
-              />
-            </button>
-          </li>
-        ))}
-      </ul>
+        <div className="mt-14 px-[7%] md:hidden">
+          <Mosaico linhas={LINHAS_MOBILE} prefixo="galeria-m" aoAbrir={abrir} />
+        </div>
+        <div className="mt-16 hidden px-[6%] md:block">
+          <Mosaico linhas={LINHAS_DESKTOP} prefixo="galeria-d" aoAbrir={abrir} />
+        </div>
 
-      <BotaoWhatsApp
-        origem="galeria"
-        className="hover-tatil inline-flex min-h-12 w-fit items-center rounded-full bg-ed-orange px-6 text-sm font-bold text-ed-navy shadow-ed"
-      >
-        Quero saber como vocês cuidam disso
-      </BotaoWhatsApp>
+        <div className="mt-14">
+          <BotaoWhatsApp origem="galeria" className="botao botao--laranja">
+            <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
+            {CTA_WHATSAPP}
+          </BotaoWhatsApp>
+        </div>
+      </div>
 
       {indiceAberto !== null && (
         <Lightbox
@@ -101,6 +109,68 @@ export function GaleriaReal() {
       )}
     </section>
   );
+}
+
+function Mosaico({
+  linhas,
+  prefixo,
+  aoAbrir,
+}: {
+  linhas: [number, number][][];
+  prefixo: string;
+  aoAbrir: (indice: number, gatilho: HTMLButtonElement) => void;
+}) {
+  const colunas = linhas[0].reduce((soma, [, largura]) => soma + largura, 0);
+    return (
+      <div className="quebra-cabeca flex flex-col">
+        {linhas.map((linha, indiceLinha) => (
+          <ul
+            key={indiceLinha}
+            role="list"
+            className="grid"
+            style={{ gridTemplateColumns: `repeat(${colunas}, minmax(0, 1fr))` }}
+          >
+            {linha.map(([posicao, largura], indiceNaLinha) => {
+              const indiceFoto = ORDEM[posicao];
+              const foto = FOTOS_GALERIA[indiceFoto];
+              return (
+                <li
+                  key={foto.arquivo}
+                  className="relative"
+                  style={{
+                    gridColumn: `span ${largura}`,
+                    aspectRatio: `${largura} / 1`,
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={(evento) => aoAbrir(indiceFoto, evento.currentTarget)}
+                    aria-label={`Ampliar foto: ${foto.alt}`}
+                    className="absolute inset-0"
+                  >
+                    <Peca
+                      id={`${prefixo}-${indiceFoto}`}
+                      bordas={bordasNaLinha(indiceNaLinha, linha.length)}
+                      largura={largura}
+                      altura={1}
+                      sangria
+                    >
+                      <Image
+                        src={foto.arquivo}
+                        alt=""
+                        fill
+                        sizes={largura === 2 ? "(min-width: 768px) 60vw, 90vw" : "(min-width: 768px) 30vw, 45vw"}
+                        className="object-cover"
+                      />
+                    </Peca>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ))}
+      </div>
+    );
 }
 
 function Lightbox({
@@ -157,10 +227,8 @@ function Lightbox({
     return () => window.removeEventListener("keydown", aoTeclado);
   }, [aoFechar, aoProxima, aoAnterior]);
 
-  // Portal para fora de .ed-superficie-sensorial: esse wrapper tem filter
-  // (T3), e filter em CSS cria containing block para position:fixed —
-  // sem o portal, os botões calculam a posição contra a altura da página
-  // inteira, não contra a viewport (achado ao testar este bloco).
+  // Portal para o body: as peças ficam dentro de .quebra-cabeca, que tem
+  // filter, e filter cria containing block para position:fixed.
   return createPortal(
     <div
       role="dialog"
@@ -179,7 +247,7 @@ function Lightbox({
         aria-label="Fechar"
         className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-ed-surface text-ed-navy"
       >
-        <span aria-hidden="true">✕</span>
+        <X size={24} weight="bold" aria-hidden="true" />
       </button>
 
       <button
@@ -189,7 +257,7 @@ function Lightbox({
         aria-label="Foto anterior"
         className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-ed-surface text-ed-navy"
       >
-        <span aria-hidden="true">‹</span>
+        <CaretLeft size={24} weight="bold" aria-hidden="true" />
       </button>
 
       <div className="relative max-h-[80vh] w-full max-w-2xl">
@@ -209,7 +277,7 @@ function Lightbox({
         aria-label="Próxima foto"
         className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-ed-surface text-ed-navy"
       >
-        <span aria-hidden="true">›</span>
+        <CaretRight size={24} weight="bold" aria-hidden="true" />
       </button>
     </div>,
     document.body,

@@ -195,14 +195,14 @@ export function PerfilSensorialForm() {
             <button
               type="button"
               onClick={() => irPara(etapa - 1)}
-              className="min-h-12 rounded-full border border-ed-navy px-6 text-sm font-bold text-ed-navy"
+              className="botao botao--contorno"
             >
               Voltar
             </button>
           )}
           <button
             type="submit"
-            className="hover-tatil min-h-12 flex-1 rounded-full bg-ed-orange px-6 text-sm font-bold text-ed-navy shadow-ed"
+            className="botao botao--laranja flex-1"
           >
             {etapa === TOTAL_ETAPAS ? "Enviar pelo WhatsApp" : "Continuar"}
           </button>

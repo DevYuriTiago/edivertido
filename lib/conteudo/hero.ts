@@ -3,9 +3,10 @@ export type ConteudoHero = {
   subtitulo: string;
 };
 
-// Copy exata do briefing — CLAUDE.md §6.
 export const HERO: ConteudoHero = {
-  titulo: "Um corte de cabelo não precisa virar uma crise.",
+  titulo: "O salão que se encaixa em você",
   subtitulo:
-    "Salão e barbearia em Recife com terapeuta ABA no atendimento. Para crianças, adolescentes e adultos autistas, com TDAH, microcefalia e outras condições.",
+    "Corte, barba, sobrancelha e penteado em Recife, com atendimento preparado para pessoas autistas e neurodivergentes.",
 };
+
+export const CTA_WHATSAPP = "Chamar no WhatsApp";

@@ -1,28 +1,43 @@
-import { ReguladorSensorial } from "@/components/tatil/ReguladorSensorial";
+import Image from "next/image";
+import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
-import { HERO } from "@/lib/conteudo/hero";
+import { QuebraCabecaHero } from "@/components/puzzle/QuebraCabecaHero";
+import { HERO, CTA_WHATSAPP } from "@/lib/conteudo/hero";
 
-// Bloco 1 — remove o obstáculo de reconhecimento: em 5s, a mãe cética
-// precisa ver que aqui é diferente. O Regulador ao lado do H1 é a
-// diferenciação em si, não uma ilustração dela.
 export function Hero() {
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="mx-auto flex max-w-5xl flex-col items-center gap-12 px-6 pb-16 pt-10 md:flex-row md:items-start md:justify-between md:gap-8 md:pb-20 md:pt-16"
+      className="secao secao--navy overflow-hidden pt-10 md:pt-16"
     >
-      <div className="flex max-w-xl flex-col items-start gap-6">
-        <h1 id="hero-titulo">{HERO.titulo}</h1>
-        <p>{HERO.subtitulo}</p>
-        <BotaoWhatsApp
-          origem="hero"
-          className="hover-tatil inline-flex min-h-12 items-center rounded-full bg-ed-orange px-8 text-base font-bold text-ed-navy shadow-ed"
-        >
-          Falar no WhatsApp
-        </BotaoWhatsApp>
-      </div>
+      <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-5 md:px-8 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-6">
+          <h1 id="hero-titulo" className="titulo titulo-1">
+            {HERO.titulo}
+          </h1>
+          <p className="medida mt-6 text-lg md:text-xl">{HERO.subtitulo}</p>
+          <div className="mt-9">
+            <BotaoWhatsApp origem="hero" className="botao botao--laranja">
+              <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
+              {CTA_WHATSAPP}
+            </BotaoWhatsApp>
+          </div>
+        </div>
 
-      <ReguladorSensorial />
+        <div className="so-ruido mx-auto w-full max-w-[540px] px-6 pb-6 lg:col-span-6 lg:px-8">
+          <QuebraCabecaHero />
+        </div>
+
+        <div className="so-calmo foto-calma relative aspect-[4/3] w-full overflow-hidden rounded-2xl lg:col-span-6">
+          <Image
+            src="/marca/05.jpeg"
+            alt="Barbeiro sorridente faz sinal de positivo ao lado de uma criança sorrindo num carrinho de brinquedo depois do corte."
+            fill
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
     </section>
   );
 }

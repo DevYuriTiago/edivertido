@@ -1,144 +1,349 @@
 @import "tailwindcss";
 
+/* Só as cores da marca. Tudo que não é uma delas é um tom do próprio
+   navy (texto secundário, linhas), nunca uma cor nova. */
 :root {
-  --ed-navy: #131351;
-  --ed-green: #77b900;
-  --ed-orange: #fca700;
-  --ed-white: #ffffff;
+  --navy: #131351;
+  --laranja: #fca700;
+  --verde: #77b900;
+  --branco: #ffffff;
 
-  --ed-surface: #fafafc;
-  --ed-surface-2: #f0f0f5;
-  --ed-ink: #131351;
-  --ed-ink-soft: #4a4b72;
-  --ed-line: #dcdce8;
+  --navy-80: color-mix(in srgb, var(--navy) 80%, var(--branco));
+  --navy-15: color-mix(in srgb, var(--navy) 15%, var(--branco));
+  --navy-06: color-mix(in srgb, var(--navy) 6%, var(--branco));
 
-  /* Sobrescrito antes da primeira pintura pelo script em app/layout.tsx;
-     0.6 aqui é só o fallback para JS desabilitado. */
-  --ed-nivel: 0.6;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --sombra-peca: 0 10px 24px color-mix(in srgb, var(--navy) 28%, transparent);
 
-  /* Derivados do nível sensorial — recalculados pelo navegador sempre que
-     --ed-nivel muda, sem precisar de JS. Calmo (0) = mais respiro entre
-     blocos; pleno (1) = espaçamento de base. Ver lib/sensorial.ts. */
-  --ed-espacamento: calc(1.5 - var(--ed-nivel) * 0.5);
-
-  --ed-sombra: 0 2px 16px rgba(27, 28, 99, 0.08);
+  --anel: var(--navy);
+  --fundo: var(--branco);
 }
 
 @theme inline {
-  --color-ed-navy: var(--ed-navy);
-  --color-ed-green: var(--ed-green);
-  --color-ed-orange: var(--ed-orange);
-  --color-ed-white: var(--ed-white);
+  --color-ed-navy: var(--navy);
+  --color-ed-green: var(--verde);
+  --color-ed-orange: var(--laranja);
+  --color-ed-white: var(--branco);
+  --color-ed-surface: var(--branco);
+  --color-ed-surface-2: var(--navy-06);
+  --color-ed-ink: var(--navy);
+  --color-ed-ink-soft: var(--navy-80);
+  --color-ed-line: var(--navy-15);
 
-  --color-ed-surface: var(--ed-surface);
-  --color-ed-surface-2: var(--ed-surface-2);
-  --color-ed-ink: var(--ed-ink);
-  --color-ed-ink-soft: var(--ed-ink-soft);
-  --color-ed-line: var(--ed-line);
-
-  --font-display: var(--font-archivo);
+  --font-display: var(--font-barlow);
   --font-body: var(--font-atkinson);
+}
 
-  --shadow-ed: var(--ed-sombra);
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--ed-surface);
-  color: var(--ed-ink);
+  background: var(--branco);
+  color: var(--navy);
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
-/* CLAUDE.md §10: foco visível e forte em todo interativo, sem exceção. */
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+::selection {
+  background: var(--laranja);
+  color: var(--navy);
+}
+
 :focus-visible {
-  outline: 3px solid var(--ed-orange);
-  outline-offset: 2px;
+  outline: 3px solid var(--anel);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-/* Microinteração de toque em CTAs, escalada pelo nível sensorial: no
-   calmo (--ed-nivel: 0) o hover não desloca nada. */
-.hover-tatil {
-  transition: transform 0.15s ease;
-}
-.hover-tatil:hover {
-  transform: scale(calc(1 + 0.02 * var(--ed-nivel)));
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-/* Escurece/dessatura o conteúdo conforme o nível sensorial cai — mantido
-   fora de <body> de propósito: filter em body vira containing block e
-   quebra o posicionamento de elementos fixed (barra de WhatsApp do T5). */
-.ed-superficie-sensorial {
-  filter: saturate(calc(50% + var(--ed-nivel) * 50%));
+p {
+  text-wrap: pretty;
 }
 
-/* Escala tipográfica — CLAUDE.md §8, mobile por padrão, desktop a partir de 768px */
-@layer base {
-  h1,
-  .text-h1 {
-    font-family: var(--font-display);
+/* Classes de componente em camada própria: utilitários do Tailwind
+   (hidden, leading-*, w-full) vencem sem precisar de !important. */
+@layer components {
+  /* ---------- Tipografia de display: o mesmo grotesco condensado do
+     wordmark EDIVERTIDO ---------- */
+  .titulo {
+    font-family: var(--font-barlow), sans-serif;
     font-weight: 800;
-    letter-spacing: -0.02em;
-    font-size: 2.125rem; /* 34px */
-    line-height: 1.1;
-  }
-
-  h2,
-  .text-h2 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    font-size: 1.625rem; /* 26px */
-    line-height: 1.2;
-  }
-
-  h3,
-  .text-h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.3;
-  }
-
-  p,
-  .text-body {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 1.0625rem; /* 17px */
-    line-height: 1.65;
-  }
-
-  .text-sm {
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 0.9375rem; /* 15px */
-    line-height: 1.6;
-  }
-
-  .text-eyebrow {
-    font-family: var(--font-display);
-    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    line-height: 0.92;
+    letter-spacing: -0.005em;
   }
 
-  @media (min-width: 768px) {
-    h1,
-    .text-h1 {
-      font-size: 3.5rem; /* 56px */
-    }
+  .titulo-1 {
+    font-size: clamp(3rem, 1.6rem + 6vw, 6rem);
+  }
 
-    h2,
-    .text-h2 {
-      font-size: 2.375rem; /* 38px */
-    }
+  .titulo-2 {
+    font-size: clamp(2.4rem, 1.5rem + 3.6vw, 4.5rem);
+  }
 
-    h3,
-    .text-h3 {
-      font-size: 1.5rem; /* 24px */
-    }
+  .titulo-3 {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    line-height: 1;
+  }
 
-    p,
-    .text-body {
-      font-size: 1.125rem; /* 18px */
+  .medida {
+    max-width: 62ch;
+  }
+
+  /* ---------- Seções em campo de cor ---------- */
+  .secao {
+    position: relative;
+    /* Encaixes transbordam a caixa da peça; nunca a largura da página.
+       Só no eixo x: a costura sobe para fora da seção no eixo y. */
+    overflow-x: clip;
+    background: var(--fundo);
+    padding-block: clamp(5rem, 3rem + 7vw, 9rem);
+  }
+
+  .secao--navy {
+    --fundo: var(--navy);
+    --anel: var(--laranja);
+    color: var(--branco);
+  }
+
+  .secao--laranja {
+    --fundo: var(--laranja);
+    color: var(--navy);
+  }
+
+  .secao--verde {
+    --fundo: var(--verde);
+    color: var(--navy);
+  }
+
+  .secao--branco {
+    --fundo: var(--branco);
+    color: var(--navy);
+  }
+
+  /* Costura de quebra-cabeça: a seção de baixo sobe com os encaixes por
+     cima da de cima. Um encaixe a cada 140px, em escala real em qualquer
+     largura (máscara repetida, não esticada). */
+  .costura {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1px;
+    height: 40px;
+    transform: translateY(-100%);
+    background: var(--fundo);
+    pointer-events: none;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='40'%3E%3Cpath d='M0 36 L54 36 C60 36 62 30 58 24 C52 14 60 6 70 6 C80 6 88 14 82 24 C78 30 80 36 86 36 L140 36 L140 40 L0 40 Z'/%3E%3C/svg%3E")
+      repeat-x center bottom / 140px 40px;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='40'%3E%3Cpath d='M0 36 L54 36 C60 36 62 30 58 24 C52 14 60 6 70 6 C80 6 88 14 82 24 C78 30 80 36 86 36 L140 36 L140 40 L0 40 Z'/%3E%3C/svg%3E")
+      repeat-x center bottom / 140px 40px;
+  }
+
+  /* ---------- Peças ---------- */
+  /* Sombra no quebra-cabeça montado, não em cada peça: peça por peça,
+     uma sujava a vizinha e os campos de cor deixavam de ser planos. */
+  .quebra-cabeca {
+    filter: drop-shadow(var(--sombra-peca));
+  }
+
+  .titulo--frase {
+    text-transform: none;
+    line-height: 1.02;
+  }
+
+  /* ---------- Botões ---------- */
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding-inline: 1.75rem;
+    border-radius: 999px;
+    font-family: var(--font-barlow), sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: transform 160ms var(--ease-out), background-color 160ms ease;
+  }
+
+  .botao:active {
+    transform: scale(0.97);
+  }
+
+  .botao--laranja {
+    background: var(--laranja);
+    color: var(--navy);
+  }
+
+  .botao--navy {
+    background: var(--navy);
+    color: var(--branco);
+  }
+
+  .botao--branco {
+    background: var(--branco);
+    color: var(--navy);
+  }
+
+  .botao--contorno {
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .botao:hover {
+      transform: translateY(-2px);
     }
+    .botao:active {
+      transform: scale(0.97);
+    }
+  }
+
+  /* ---------- Interruptor "Tirar ruído" ---------- */
+  .interruptor-trilho {
+    background: var(--navy-15);
+    transition: background-color 160ms ease;
+  }
+
+  .interruptor-bolinha {
+    background: var(--navy);
+    transition: transform 220ms var(--ease-out), background-color 160ms ease;
+  }
+
+  [data-calmo] .interruptor-trilho {
+    background: var(--navy);
+  }
+
+  [data-calmo] .interruptor-bolinha {
+    background: var(--branco);
+    transform: translateX(20px);
+  }
+
+  /* ---------- Fechamento ----------
+     currentColor: os mesmos tons servem no navy e no modo calmo. */
+  .rodape {
+    border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+  }
+
+  .peca-contorno {
+    stroke: var(--fundo);
+  }
+}
+
+/* ---------- Visibilidade por modo ---------- */
+.so-calmo {
+  display: none;
+}
+
+/* ---------- MODO "TIRAR RUÍDO" ----------
+   Tudo branco, plano, parado. Aplicado por data-calmo no <html>, que um
+   script escreve antes da primeira pintura (sem flash). */
+[data-calmo] .so-ruido {
+  display: none !important;
+}
+
+[data-calmo] .so-calmo {
+  display: block;
+}
+
+[data-calmo] .secao {
+  --fundo: var(--branco);
+  --anel: var(--navy);
+  color: var(--navy);
+  padding-block: clamp(3.5rem, 2.5rem + 3vw, 5rem);
+  border-top: 1px solid var(--navy-15);
+}
+
+[data-calmo] .costura {
+  display: none;
+}
+
+[data-calmo] .peca-caixa {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  filter: none;
+}
+
+[data-calmo] .peca-corte {
+  clip-path: none !important;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px var(--navy-15);
+}
+
+[data-calmo] .peca-miolo {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+[data-calmo] .quebra-cabeca {
+  filter: none;
+}
+
+[data-calmo] .peca-contorno {
+  display: none;
+}
+
+[data-calmo] .peca-cor {
+  background: var(--branco) !important;
+  color: var(--navy) !important;
+}
+
+[data-calmo] .botao--laranja,
+[data-calmo] .botao--branco {
+  background: var(--navy);
+  color: var(--branco);
+}
+
+[data-calmo] .titulo-1 {
+  font-size: clamp(2.4rem, 1.6rem + 3vw, 3.75rem);
+}
+
+[data-calmo] .titulo-2 {
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+[data-calmo] .foto-calma {
+  max-width: 34rem;
+}
+
+/* Qualquer elemento com movimento (.mov) fica parado e visível no modo
+   calmo e com movimento reduzido, mesmo com estilo inline do Motion. */
+[data-calmo] .mov,
+[data-calmo] .mov * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+[data-calmo] * {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .mov,
+  .mov * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

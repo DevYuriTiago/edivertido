@@ -1,74 +1,79 @@
-"use client";
-
-import { useState } from "react";
-import { Revelar } from "@/components/ui/Revelar";
+import Link from "next/link";
+import { MapPin, Clock, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { BotaoWhatsApp } from "@/components/ui/BotaoWhatsApp";
+import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 import {
   enderecoCompleto,
   faixasFormatadas,
   linkComoChegar,
 } from "@/lib/conteudo/contato";
 
-// Bloco 11 — fecha a página. Mapa só carrega sob clique: um iframe do
-// Google Maps no load custa JS e uma requisição de terceiro que a
-// maioria de quem visita nunca precisa.
+// Fecha a página. Sem mapa embutido: "Como chegar" abre o Google Maps já
+// com a rota, que é o que a pessoa quer de um mapa aqui.
 export function OndeEstamos() {
-  const [mapaCarregado, setMapaCarregado] = useState(false);
   const endereco = enderecoCompleto();
   const horarios = faixasFormatadas();
 
   return (
-    <section
-      aria-labelledby="onde-titulo"
-      className="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-16 md:py-24"
-    >
-      <Revelar className="flex flex-col gap-4">
-        <h2 id="onde-titulo">Onde estamos</h2>
-        <p>{endereco}</p>
-        <ul className="flex flex-col gap-1">
-          {horarios.map((linha) => (
-            <li key={linha} className="text-sm text-ed-ink-soft">
-              {linha}
-            </li>
-          ))}
-        </ul>
-      </Revelar>
+    <section aria-labelledby="onde-titulo" className="secao secao--navy">
+      <span className="costura" aria-hidden="true" />
+      <div className="mx-auto grid max-w-[1240px] gap-14 px-5 md:px-8 lg:grid-cols-12 lg:gap-12">
+        <h2 id="onde-titulo" className="titulo titulo-1 max-w-[10ch] lg:col-span-6">
+          Vem conhecer o salão
+        </h2>
 
-      <Revelar>
-        {mapaCarregado ? (
-          <iframe
-            title="Mapa até o Edivertido Salão Inclusivo"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(endereco)}&output=embed`}
-            className="aspect-video w-full rounded-2xl border-0"
-            loading="lazy"
-          />
-        ) : (
-          <button
-            type="button"
-            onClick={() => setMapaCarregado(true)}
-            className="flex aspect-video w-full items-center justify-center rounded-2xl bg-ed-surface-2 text-sm font-bold text-ed-navy"
-          >
-            Ver mapa
-          </button>
-        )}
-      </Revelar>
+        <div className="lg:col-span-6 lg:pt-3">
+          <dl className="flex flex-col gap-6">
+            <div className="flex gap-4">
+              <dt className="shrink-0">
+                <MapPin size={28} weight="fill" aria-hidden="true" />
+                <span className="sr-only">Endereço</span>
+              </dt>
+              <dd className="text-lg">{endereco}</dd>
+            </div>
+            <div className="flex gap-4">
+              <dt className="shrink-0">
+                <Clock size={28} weight="fill" aria-hidden="true" />
+                <span className="sr-only">Horário</span>
+              </dt>
+              <dd>
+                <ul>
+                  {horarios.map((linha) => (
+                    <li key={linha} className="text-lg">
+                      {linha}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          </dl>
 
-      <Revelar className="flex flex-wrap gap-3">
-        <BotaoWhatsApp
-          origem="final"
-          className="hover-tatil inline-flex min-h-12 items-center rounded-full bg-ed-orange px-8 text-base font-bold text-ed-navy shadow-ed"
-        >
-          Falar no WhatsApp
-        </BotaoWhatsApp>
-        <a
-          href={linkComoChegar()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover-tatil inline-flex min-h-12 items-center rounded-full border border-ed-navy px-8 text-base font-bold text-ed-navy"
-        >
-          Como chegar
-        </a>
-      </Revelar>
+          <div className="mt-12 flex flex-wrap gap-4">
+            <BotaoWhatsApp origem="final" className="botao botao--laranja">
+              <WhatsappLogo size={24} weight="bold" aria-hidden="true" />
+              {CTA_WHATSAPP}
+            </BotaoWhatsApp>
+            <a
+              href={linkComoChegar()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="botao botao--contorno"
+            >
+              Como chegar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <footer className="rodape mx-auto mt-24 flex max-w-[1240px] flex-col gap-3 px-5 pt-10 md:flex-row md:items-center md:justify-between md:px-8">
+        <p className="titulo text-2xl">Edivertido Salão Inclusivo</p>
+        <p className="text-base">
+          Rua do Cupim, 53, Graças, Recife.{" "}
+          <Link href="/privacidade" className="underline underline-offset-4">
+            Política de privacidade
+          </Link>
+        </p>
+      </footer>
     </section>
   );
 }

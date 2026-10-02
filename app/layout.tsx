@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Archivo, Atkinson_Hyperlegible_Next } from "next/font/google";
+import { Barlow_Condensed, Atkinson_Hyperlegible_Next } from "next/font/google";
 import { SensorialProvider } from "@/lib/sensorial";
 import { PularParaConteudo } from "@/components/casca/PularParaConteudo";
 import { Header } from "@/components/casca/Header";
 import { BarraFixaMobile } from "@/components/casca/BarraFixaMobile";
-import { LoaderInicial } from "@/components/casca/LoaderInicial";
 import { schemaHairSalon } from "@/lib/schema";
 import "./globals.css";
 
-// Precisa rodar antes da primeira pintura para não haver flash de estado
-// errado. Mantém a mesma lógica de lib/sensorial.ts (chave, 0.6, 0), mas
-// duplicada aqui de propósito: roda como script cru, fora da árvore React.
-const SCRIPT_NIVEL_SENSORIAL = `(function(){try{var c="ed-sensorial-nivel";var s=localStorage.getItem(c);var n;if(s!==null){var v=parseFloat(s);if(!isNaN(v))n=v;}if(n===undefined){n=matchMedia("(prefers-reduced-motion: reduce)").matches?0:0.6;}n=Math.min(1,Math.max(0,n));document.documentElement.style.setProperty("--ed-nivel",String(n));}catch(e){}})();`;
+// Precisa rodar antes da primeira pintura para o modo "Tirar ruído" não
+// piscar colorido antes de ficar branco. Mesma chave de lib/sensorial.ts,
+// duplicada de propósito: roda como script cru, fora da árvore React.
+const SCRIPT_SEM_RUIDO = `(function(){try{if(localStorage.getItem("ed-sem-ruido")==="1")document.documentElement.setAttribute("data-calmo","true")}catch(e){}})();`;
 
-const archivo = Archivo({
+const barlow = Barlow_Condensed({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  weight: ["600", "700", "800"],
+  variable: "--font-barlow",
   display: "swap",
 });
 
@@ -64,13 +64,13 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${archivo.variable} ${atkinson.variable}`}
-      // O script abaixo escreve --ed-nivel no style deste elemento antes da
+      className={`${barlow.variable} ${atkinson.variable}`}
+      // O script abaixo escreve data-calmo neste elemento antes da
       // hidratação, de propósito (evita flash de estado errado). React vai
       // ver um mismatch aqui; é esperado, mesmo padrão do next-themes.
       suppressHydrationWarning
     >
-      <body className="bg-ed-surface text-ed-ink font-body antialiased">
+      <body className="antialiased">
         <script
           type="application/ld+json"
           // JSON.stringify já escapa aspas; troca "<" por escape unicode
@@ -85,16 +85,12 @@ export default function RootLayout({
           }}
         />
         <script
-          dangerouslySetInnerHTML={{ __html: SCRIPT_NIVEL_SENSORIAL }}
+          dangerouslySetInnerHTML={{ __html: SCRIPT_SEM_RUIDO }}
         />
         <SensorialProvider>
-          <LoaderInicial />
           <PularParaConteudo />
-          {/* Header e barra mobile ficam fora do filtro de saturação de
-              propósito: o CTA precisa continuar alcançável e legível em
-              qualquer nível sensorial (CLAUDE.md §5, regra 1). */}
           <Header />
-          <div className="ed-superficie-sensorial pb-24 md:pb-0">
+          <div className="pb-24 md:pb-0">
             {children}
           </div>
           <BarraFixaMobile />
