@@ -23,8 +23,15 @@ export function FaixaNumeros() {
           <Star weight="fill" className="text-ed-orange" aria-hidden="true" />
         </span>{" "}
         no Google, em {NUMEROS.avaliacoesGoogle} avaliações.{" "}
+        Mais de{" "}
         <span className="whitespace-nowrap">{NUMEROS.anosDeOperacao} anos</span>{" "}
-        cortando cabelo em Recife.{" "}
+        cortando cabelo,{" "}
+        {NUMEROS.anosNeurodivergente ? (
+          <>
+            <span className="whitespace-nowrap">{NUMEROS.anosNeurodivergente} deles</span>{" "}
+            com o público neurodivergente.{" "}
+          </>
+        ) : null}
         {NUMEROS.atendimentosAproximado ? "Mais de " : ""}
         <span className="whitespace-nowrap">{atendimentos} atendimentos.</span>
       </p>

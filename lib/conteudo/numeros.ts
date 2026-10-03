@@ -7,6 +7,8 @@ export type FaixaNumeros = {
   notaGoogle?: number;
   avaliacoesGoogle?: number;
   anosDeOperacao?: number;
+  // Anos atendendo o público neurodivergente (cliente, 2026-10-03).
+  anosNeurodivergente?: number;
   atendimentosRealizados?: number;
   // true = exibe "X+" em vez do valor exato. A cliente informou
   // "mais de 2k", não um número fechado — CLAUDE.md §12 proíbe "mais de"
@@ -19,7 +21,9 @@ export type FaixaNumeros = {
 export const NUMEROS: FaixaNumeros = {
   notaGoogle: 5.0,
   avaliacoesGoogle: 84,
-  anosDeOperacao: 5,
+  // "Mais de 10 anos" de profissão, informado pela cliente em 2026-10-03.
+  anosDeOperacao: 10,
+  anosNeurodivergente: 5,
   atendimentosRealizados: 2000,
   atendimentosAproximado: true,
 };
