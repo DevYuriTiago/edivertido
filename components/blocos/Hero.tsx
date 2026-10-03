@@ -12,7 +12,7 @@ export function Hero() {
     >
       <div className="mx-auto grid max-w-[1240px] items-center gap-14 px-5 md:px-8 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-6">
-          <h1 id="hero-titulo" className="titulo titulo-1">
+          <h1 id="hero-titulo" className="titulo titulo-1 text-[clamp(2.1rem,1.3rem+2.4vw,3.4rem)] leading-[1.08]">
             {HERO.titulo}
           </h1>
           <p className="medida mt-6 text-lg md:text-xl">{HERO.subtitulo}</p>
