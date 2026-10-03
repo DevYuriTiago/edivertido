@@ -17,8 +17,4 @@ export const PARAGRAFOS_VALOR: ParagrafoValor[] = [
     texto:
       "O valor é combinado com você pelo WhatsApp, antes da visita. Você sai de casa sabendo quanto vai pagar.",
   },
-  {
-    texto:
-      "E se o corte não terminar no mesmo dia, isso não vira cobrança dobrada na próxima vez.",
-  },
 ];
