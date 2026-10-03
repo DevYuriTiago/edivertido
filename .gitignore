@@ -35,3 +35,15 @@ next-env.d.ts
 .claude/skills/impeccable/scripts/bin/
 .impeccable/config.local.json
 .impeccable/hook.cache.json
+
+# Ferramentas de IA e documentos de trabalho: ficam só na máquina local
+.claude/
+.impeccable/
+skills-lock.json
+CLAUDE.md
+TASKS.md
+PRODUCT.md
+DESIGN.md
+
+# Arquivos originais da marca que o site não usa (não vão para public/)
+marca-original/
