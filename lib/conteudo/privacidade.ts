@@ -34,7 +34,7 @@ export const SECOES_PRIVACIDADE: SecaoPrivacidade[] = [
   {
     titulo: "Como esses dados chegam até a gente",
     paragrafos: [
-      "O site não tem servidor próprio, banco de dados ou login. O formulário monta uma mensagem com o que você preencheu e abre o WhatsApp com essa mensagem pronta, no seu aparelho.",
+      "O formulário de atendimento não guarda nada no site. Ele monta uma mensagem com o que você preencheu e abre o WhatsApp com essa mensagem pronta, no seu aparelho.",
       "Nada é enviado sozinho. A mensagem só chega ao salão se você tocar em enviar dentro do WhatsApp. A partir daí, a conversa também segue as regras de privacidade do próprio WhatsApp.",
     ],
   },
@@ -63,6 +63,13 @@ export const SECOES_PRIVACIDADE: SecaoPrivacidade[] = [
     paragrafos: [
       "As fotos de atendimentos que aparecem neste site e nas redes sociais do salão são publicadas com autorização da própria pessoa ou do responsável legal.",
       "Quem autorizou pode mudar de ideia. Peça pelo e-mail ou pelo WhatsApp acima e a gente retira a imagem.",
+    ],
+  },
+  {
+    titulo: "Autorização de uso de imagem",
+    paragrafos: [
+      "Quem autoriza o uso de imagem preenche um termo em edivertido.com.br/autorizacao. Nele pedimos o nome de quem aparece nas imagens, o nome, o CPF e o WhatsApp de quem assina, as escolhas feitas e a assinatura desenhada na tela.",
+      "Diferente do formulário de atendimento, esse termo é enviado e guardado: fica registrado no serviço de formulários da Netlify, que hospeda o site, e chega por e-mail à gestão do salão. Guardamos enquanto a autorização valer e pelo tempo necessário para comprovar que ela existiu.",
     ],
   },
   {

@@ -403,3 +403,23 @@ p {
     transition: none !important;
   }
 }
+
+/* Na autorização o único botão é o do próprio termo: sem a barra fixa
+   de WhatsApp por cima do formulário. */
+body:has(.pagina-autorizacao) .barra-fixa {
+  display: none;
+}
+
+/* ---------- Impressão: só o documento (comprovante da autorização) ---------- */
+@media print {
+  header.sticky,
+  .fixed,
+  .nao-imprimir {
+    display: none !important;
+  }
+
+  .comprovante {
+    border: 0;
+    padding: 0;
+  }
+}

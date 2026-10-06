@@ -8,7 +8,7 @@ import { CTA_WHATSAPP } from "@/lib/conteudo/hero";
 export function BarraFixaMobile() {
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-ed-line bg-ed-white p-3 md:hidden"
+      className="barra-fixa fixed inset-x-0 bottom-0 z-40 border-t border-ed-line bg-ed-white p-3 md:hidden"
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
     >
       <BotaoPerfil origem="barra-fixa" className="botao botao--laranja w-full">
